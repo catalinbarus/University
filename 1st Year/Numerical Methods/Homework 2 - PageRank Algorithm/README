@@ -1,0 +1,62 @@
+Nume student: Barus Catalin-Stefan
+Grupa: 311CD
+
+**README Tema 2 - Page Rank**
+
+Task-ul 1: Algortimul Iterative
+
+Pentru inceput, am deschis fisierul in care erau furnizate lista de site-uri si
+vecinii si am citit pe rand numarul de site-uri furnizate, indexul site-ului
+curent si lista de vecini (cate link-uri catre alte site-uri din fisier contine 
+site-ul curent). Mai departe, mi-am construit matricea de adiacenta 
+folosindu-ma de lista de vecini si m-am asigurat sa pun pe diagonala principala
+a matricei 0, deoarece link-urile care ma redirecteaza spre acelasi site nu
+sunt luate in considerare, determin pentru fiecare site numarul total de 
+link-uri (suma fiecarei linii din matrice) si il stochez intr-in vector linie.
+Am determinat matricele K si M asa cum a fost descris in enunt, si prima
+iteratie a matricei PageRank, ca sa pot itera ulterior pana ajung la 
+rezultatul dorit. Pentru a determina matricea PageRank m-am folosit de logica
+si formulele furnizate din enuntul temei.
+
+
+Task-ul 2: Algoritmul Algebraic
+
+Pasii initiali pentru implementarea acestui algoritm sunt identici cu cei de 
+la algoritmul Iterative. Schimbarea apare in cadrul determinarii inverselor
+matricelor M si a unei bucati din formula de determinare a matricei PageRank
+prin algortimul Algebraic " (I - d * M)^-1 ". Pentru aceste matrice m-am
+folosit de algoritmul GramSchmidt pentru a descompune matricele date in 
+matricele Q si R, dupa care sa rezolv sistemul furnizat in enuntul temei, 
+" T · x i = e i ", folosindu-ma de algoritmul pentru rezolvarea sistemelor
+superior triunghiulare (SST).
+
+Functia GramSchmidt a fost implementata folosindu-ma de ce predefinita pe
+pe site-ul cursului, la acest link: 
+https://acs.curs.pub.ro/2019/mod/resource/view.php?id=11211
+
+Functia SST a fost implementata folosindu-ma de explicatiile din laboratorul 2
+de pe site-ul de curs:
+https://acs.curs.pub.ro/2019/mod/resource/view.php?id=10551
+
+
+Task-ul 3: Gradul de Aparteneta si PageRank
+
+Gradul de Apartenenta:
+
+In cadrul acestui task pentru determinarea lui a si b m-am folosit de 
+proprietatea functiilor continue pe ramuri, si anume daca limita la stanga 
+si limita la dreapta a unei functii fata de un punct sunt egale, atunci functia
+este continua. Folosind aceasta proprietate am obtinut ca a=1/(val2 - val1) 
+si b=val1/(val1 - val2). Mai departe a ramas doar sa verific in ce interval
+se afla x si sa determin valoarea corespunzatoare pentru y.
+
+PageRank
+
+Prima parte a implementarii, adica citirea din fisier, este identica cu cea de 
+la algoritmii Iterative si Algebraic, pana in punctul unde trebuie de aceasta 
+data sa citesc si valorile val1 si val2. Mai departe, afisez rezultatele pentru
+algoritmii Iterative si Algebraic in fisier si sortez descrescator vectorul
+coloana obtinut din Algebraic si indexii fiecarei linii pentru determinarea
+"clasamentului" de site-uri.
+
+
