@@ -1,0 +1,40 @@
+Student: Barus Catalin-Stefan
+Grupa: 311 CD
+
+**Part 1**
+
+**Functia-generate probabilities system(rows)**
+	
+	Initial, am determinat valoarea ultimului element de pe ultimul rand, pentru a putea fi folosit ca referinta pe viitorul algoritmului.
+Dupa aceea, am calculat vectorul b parcurgand randurile si atribuind valoarea 1, unde este cazul. Am decis sa parcurg descrescator pana la al treilea rand piramida si sa adaug in matricea A valoarea 5, pentru toate "nodurile" din marginea piramidei, deoarece toate elementele din margine au fix 5 legaturi cu alte "noduri". 
+	M-am ocupat separat de primele doua randuri, pentru ca mereu vor avea acelasi numar de legaturi, dar si de elementele de pe ultimul rand dintre primul si ultimul "nod", dupa care am parcurs matricea A si am verificat daca exista elemente nule pe diagonala principala, in acest caz cu siguranta atribuim valoarea 6, doar "nodurile" din centrul piramidei ramanand neindexate.
+	Pentru valorile de -1 din matricea A, am tratat din nou separat randurile 2 si 3, iar pentru restul randurilor am parcurs descrescator de la ultimul rand si m-am folosit in toti pasii de primul si ultimul element de pe fiecare linie, ca referinta pentru pozitiile din matricea A.
+
+
+**Functia-matrix to csr(A)**
+
+	Am parcurs matricea A si am despartit-o in cei 3 vectori ceruti dupa regula din PDF. Pentru vectorul rowptr m-am folosit de un auxliar si de un semafor pentru a retine prima pozitie de pe fiecare linie din matricea A.
+
+
+**Functia-Jacobi factorization(A, b)**
+
+	Pentru aceasta functie am determinat matricea diagonala a matricei A si matricele L si U, dupa care am determinat matricea de iteratie G_j si vectorul de iteratie c_j folosindu-ma de formulele de la Metoda Iterativa Jacobi.
+
+
+**Functia-Jacobi sparse(G values, G colind, G rowptr, c, tol)**
+
+	La aceasta functie mi-am construit vectorul initial de iteratie x0 (format doar din zerouri) si vectorul x de iteratie, unde produsul dintre G_values, G_colind, G_rowptr si x0 l-am calculat folosind functia deja implementata csr_multiplication. Mai departe am verificat constant daca norma celor doi vectori este mai mare decat toleranta impusa si am recalculat cei doi vectori. 
+
+
+
+**Part 2**
+
+**Functia-clustering pc(points, NC)**
+
+	Pentru inceput, am construit matricea initiala de centroizi parcurgand pentru fiecare cluster randurile din matricea points. Pentru fiecare indice al randului am verificat daca restul impartirii lui la numarul de clustere coincide cu indicele clusterului actual si daca da, atunci il adaug intr-un vector de clustere. Mai departe, parcurg din nou matricea points, acum pe coloane, iar pentru fiecare indice corespunzator clusterului de pe fiecare coloana din points fac media lor dupa care o adaug in matricea initiala de centroizi.
+	Dupa ce am obtinut matricea initiala de centroizi, parcurg pentru fiecare linie din matricea points, matricea de centroizi, iar pentru fiecare linie din points determin distanta euclidiana minima fata de o coloana din centroids. Ca sa retin aceasta impartire a coordonatelor din points in functie de ce cluster apartin mi-am construit o matrice A de NC*C coloane (NC=numarul de clustere, C=nr de coloane din centroid), care imi afiseaza coordonatele deja repartizate cum trebuie. Ca sa determin noul centroid doar am insumat, din C in C coloane, fiecare linie dupa care am facut media aritmetica repsectiva fiecarei coloane si am introdus aceste valori in noua matrice de centroizi. Repet acesti pasi pana cand matricea finala de centroizi corespunde cu cea precedenta.
+
+
+**Functia-clustering pc(points, NC)**
+
+	La aceasta functie am folosit, in mare, aceeasi logica ca la functia precedenta pentru a determina distanta euclidiana minima, cu diferenta ca aici am insumat la final toate distantele minime dintre coordonatele din matricea points si matricea centroids.
