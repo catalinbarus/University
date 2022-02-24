@@ -1,0 +1,1 @@
+CONCAT STAR UNION a b STAR c
