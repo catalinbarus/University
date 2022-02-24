@@ -1,0 +1,67 @@
+Student: Barus Catalin-Stefan
+Grupa: 321CD
+
+1) Rezolvat de mana in fisierul PDF din arhiva zip.
+
+
+3)
+
+ s = {10, 11, 12, 14, 16, 17}
+ t = {11, 13, 13, 18, 17, 19}
+
+ Perechile dupa ora de inceput/sfarsit sunt:
+
+ (10, 11)
+ (11, 13)
+ (12, 13)
+ (14, 18)
+ (16, 17)
+ (17, 19)
+
+ Sortam perechile in functie de ora de sfarsit ==>
+
+ (10, 11)
+ (11, 13)
+ (12, 13)
+ (16, 17)
+ (14, 18)
+ (17, 19)
+
+ Alegem convenabil spectacolele pentru a viziona cat mai multe:
+
+ Pasul 1:
+
+ Alegem perechea: (10, 11)
+
+ Ordinea spectacolelor alese: (10, 11)
+
+ Specacole disponibile acum: (11, 13) (12, 13) (16, 17) (14, 18) (17, 19)
+
+
+ Pasul 2:
+
+ Alegem perechea: (11, 13)
+
+ Ordinea spectacolelor alese: (10, 11) (11, 13)
+
+ Specacole disponibile acum: (12, 13) (16, 17) (14, 18) (17, 19)
+
+
+ Pasul 3:
+
+ Alegem perechea: (16, 17)
+
+ Ordinea spectacolelor alese: (10, 11) (11, 13) (16, 17)
+
+ Specacole disponibile acum: (12, 13) (14, 18) (17, 19)
+
+
+ Pasul 4:
+
+ Alegem perechea: (17, 19)
+
+ Ordinea spectacolelor alese: (10, 11) (11, 13) (16, 17) (17, 19)
+
+ Specacole disponibile acum: (12, 13) (14, 18)
+
+

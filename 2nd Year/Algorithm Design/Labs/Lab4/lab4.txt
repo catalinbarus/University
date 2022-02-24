@@ -1,0 +1,151 @@
+Student: Barus Catalin-Stefan
+Grupa: 321CD
+
+1)
+
+p0 = 2, p1 = 4, p2 = 3, p3 = 5, p4 = 2
+
+
+Produsele pentru doua matrice:
+
+m1,2 = M1 x M2 = 2 x 4 x 3 = 24
+
+m2,3 = M2 x M3 = 4 x 3 x 5 = 60
+
+m3,4 = M3 x M4 = 3 x 5 x 2 = 30
+
+
+1  2  3  4
+
+0 24        1
+
+   0 60     2
+
+      0 30  3
+
+         0  4
+
+
+Produsele pentru trei matrice:
+
+m1,3 = min(m1,1 + m2,3 + p1 x p2 x p4, m1,2 + m3,3 + p1 x p3 x p4)
+	 = min(0 + 60 + 2 x 4 x 5, 24 + 0 + 2 x 3 x 5)
+	 = min(100, 54)
+	 = 54
+
+==> s1,3 = 2
+
+m2,4 = min(m3,4 + p1 x p2 x p4, m2,3 + p1 x p3 x p4)
+	 = min(30 + 4 x 3 x 2, 60 + 4 x 5 x 2)
+	 = min(54, 100)
+	 = 54
+
+==> s2,4 = 1
+
+m1,4 = min(m2,4 + p0 x p1 x p4, m1,2 + m3,4 + p0 x p2 x p4, m1,3 + p0 x p3 x p4)
+	 = min(54 + 2 x 4 x 2, 24 + 30 + 2 x 3 x 2, 54 + 2 x 5 x 2)
+	 = min(70, 66, 74)
+	 = 66
+
+==> s1,4 = 3
+
+
+1  2  3  4
+
+0 24 54 66  1
+
+   0 60 54  2
+
+      0 30  3
+
+         0  4
+
+
+==> Parantezarea corecta este:
+
+(M1 x M2) x (M3 x M4)
+
+
+2)
+
+   0   1   2   3   4   5   6
+
+0  0   0   0   0   0   0   0
+
+1  0  10  10  10  10  10  10
+
+2  0  10  15  25  25  25  25
+
+3  0  10  15  40  50  55  65
+
+
+M = 50KG
+
+Obiectul 1:
+
+m1 = 10KG v1 = 60
+
+Obiectul 2:
+
+m2 = 30KG v2 = 120
+
+Obiectul 3:
+
+m3 = 20KG v3 = 100
+
+
+D[i][j] = max(D[i - 1][j], D[i - 1][j - masa[i]] + valoare[i])
+
+Vom indexa obiectele de la 0 ==>
+
+==>
+
+D[2][50] = max(D[1][50], D[1][30] + 100)
+
+D[1][50] = max(D[0][50], D[0][20] + 120)
+
+D[0][50] = v1 = 60
+
+Obiectul 1 are 10 KG, deci incape in rucsac (M = 50KG)
+
+D[0][20] = v1 = 60
+
+D[1][50] = max(60, 60 + 120) = 180
+
+D[2][50] = max(180, 120 + 100) = 220
+
+
+3)
+
+v = {1, 2, 9, 3, 8, 4, 7} 
+
+D[i] = max(D[j]) + 1, j < i, v[j] < v[i]
+
+v[0] = 1 ==> D[0] = 1
+
+v[1] = 2 > 1
+
+==> S[1] = {1, 2} ==> D[1] = 2
+
+v[2] = 9 > 2
+
+==> S[2] = {1, 2, 9} ==> D[2] = 3
+
+v[3] = 3 < 9
+
+==> S[3] = {1, 2, 3} ==> D[3] = 3
+
+v[4] = 8 > 3
+
+==> S[4] = {1, 2, 3, 8} ==> D[4] = 4
+
+v[5] = 4 < 8
+
+==> S[5] = {1, 2, 3, 4} ==> D[5] = 4
+
+v[6] = 7 > 3
+
+==> S[6] = {1, 2, 3, 4, 7} ==> D[6] = 5 ==>
+
+==> Lungimea maxima a subsirului este de 5.
+

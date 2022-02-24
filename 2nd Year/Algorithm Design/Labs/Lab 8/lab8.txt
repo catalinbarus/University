@@ -1,0 +1,185 @@
+Laboratorul 8
+
+
+1) Sortare topologica
+
+Fie graful orientat:
+
+A: B, D, G
+B: G
+C: -
+D: E
+E: -
+F: E
+G: C
+
+a) Nodurile sunt considerate in ordine alfabetica
+
+ 1: nod A, d(A)=1,  c(A)=gri
+ 2: nod B, d(B)=2,  c(B)=gri
+ 3: nod G, d(G)=3,  c(G)=gri
+ 4: nod C, d(C)=4,  c(C)=gri
+ 5: nod C, f(C)=5,  c(C)=negru
+ 6: nod G, f(G)=6,  c(G)=negru
+ 7: nod B, f(B)=7,  c(B)=negru
+ 8: nod D, d(D)=8,  c(D)=gri
+ 9: nod E, d(E)=9,  c(E)=gri
+10: nod E, f(E)=10, c(E)=negru
+11: nod D, f(D)=11, c(D)=negru
+12: nod A, f(A)=12, c(A)=negru
+13: nod F, d(F)=13, c(F)=gri
+14: nod F, f(F)=14, c(F)=negru
+
+Rezultatele finale pentru fiecare nod:
+
+    F: d(F)=13, f(F)=14
+    A: d(A)=1,  f(A)=12
+    D: d(D)=8,  f(D)=11
+    E: d(E)=9,  f(E)=10
+    B: d(B)=2,  f(B)=7
+    G: d(G)=3,  f(G)=6
+    C: d(C)=4,  f(C)=5
+
+Sortarea topologica va fi: F, A, D, E, B, G, C
+
+b) Nodurile sunt considerate in ordine invers-alfabetica
+
+ 1: nod G, d(G)=1,  c(G)=gri
+ 2: nod C, d(C)=2,  c(C)=gri
+ 3: nod C, f(C)=3,  c(C)=negru
+ 4: nod G, f(G)=4,  c(G)=negru
+ 5: nod F, d(F)=5,  c(F)=gri
+ 6: nod E, d(E)=6,  c(E)=gri
+ 7: nod E, f(E)=7,  c(E)=negru
+ 8: nod F, f(F)=8,  c(F)=negru
+ 9: nod D, d(D)=9,  c(D)=gri
+10: nod D, f(D)=10, c(D)=negru
+11: nod B, d(B)=11, c(B)=gri
+12: nod B, f(B)=12, c(B)=negru
+13: nod A, d(A)=13, c(A)=gri
+14: nod A, f(A)=14, c(A)=negru
+
+Rezultatele finale pentru fiecare nod:
+    A: d(A)=13, f(A)=14
+    B: d(B)=11, f(B)=12
+    D: d(D)=9,  f(D)=10
+    F: d(F)=5,  f(F)=8
+    E: d(E)=6,  f(E)=7
+    G: d(G)=1,  f(G)=4
+    C: d(C)=2,  f(C)=3
+
+Sortarea topologica va fi: A,B,D,F,E,G,C
+
+2) Compononentele tari conexe
+
+Fie graful orientat:
+
+A: B, G
+B: C, G
+C: E
+D: C, F
+E: D
+F: -
+G: H
+H: -
+I: A, J, L
+J: K
+K: I, M
+L: K
+M: N
+N: O
+O: M, P
+P: -
+
+Pentru inceput, parcurg cu DFS graful ==>
+
+ 1: nod A, d(A)=1,  c(A)=gri
+ 2: nod B, d(B)=2,  c(B)=gri
+ 3: nod C, d(C)=3,  c(C)=gri
+ 4: nod E, d(E)=4,  c(E)=gri
+ 5: nod D, d(D)=5,  c(D)=gri
+ 6: nod F, d(F)=6,  c(F)=gri
+ 7: nod F, f(F)=7,  c(F)=negru
+ 8: nod D, f(D)=8,  c(D)=negru
+ 9: nod E, f(E)=9,  c(E)=negru
+10: nod C, f(C)=10, c(C)=negru
+11: nod G, d(G)=11, c(G)=gri
+12: nod H, d(H)=12, c(H)=gri
+13: nod H, f(H)=13, c(H)=negru
+14: nod G, f(G)=14, c(G)=negru
+15: nod B, f(B)=15, c(B)=negru
+16: nod A, f(A)=16, c(A)=negru
+17: nod I, d(I)=17, c(I)=gri
+18: nod J, d(J)=18, c(J)=gri
+19: nod K, d(K)=19, c(K)=gri
+20: nod M, d(M)=20, c(M)=gri
+21: nod N, d(N)=21, c(N)=gri
+22: nod O, d(O)=22, c(O)=gri
+23: nod P, d(P)=23, c(P)=gri
+24: nod P, f(P)=24, c(P)=negru
+25: nod O, f(O)=25, c(O)=negru
+26: nod N, f(N)=26, c(N)=negru
+27: nod M, f(M)=27, c(M)=negru
+28: nod K, f(K)=28, c(K)=negru
+29: nod J, f(J)=29, c(J)=negru
+30: nod L, d(L)=30, c(L)=gri
+31: nod L, f(L)=31, c(L)=negru
+32: nod I, f(I)=32, c(I)=negru
+
+Sortez nodurile descrescator dupa timpul in care le-am terminat de parcurs ==>
+    
+ - I, L, J, K, M, N, O, P, A, B, G, H, C, E, D, F
+
+Pentru a afla componentele tari conexe, trebuie sa construiesc graful transpus ==>
+
+A: I
+B: A
+C: B, D
+D: E
+E: C
+F: D
+G: A, B
+H: G
+I: K
+J: I
+K: J, L
+L: I
+M: K, O
+N: M
+O: N
+P: O
+
+Fac DFS pe graful transpus pornind din nodul I ==>
+
+ 1: nod I, d(I)=1, c(I)=gri
+ 2: nod K, d(K)=2, c(K)=gri
+ 3: nod J, d(J)=3, c(J)=gri
+ 4: nod J, f(L)=4, c(J)=negru
+ 5: nod L, d(L)=5, c(L)=gri
+ 6: nod L, f(J)=6, c(L)=negru
+ 7: nod K, f(K)=7, c(K)=negru
+ 8: nod I, f(I)=8, c(I)=negru ==> CTC #1: I K J L
+ 9: nod M, d(M)=9, c(M)=gri
+10: nod O, d(O)=10, c(O)=gri
+11: nod N, d(N)=11, c(N)=gri
+12: nod N, f(N)=12, c(N)=negru
+13: nod O, f(O)=13, c(O)=negru
+14: nod M, f(M)=14, c(M)=negru ==> CTC #2: M O N
+15: nod P, d(P)=15, c(P)=gri
+16: nod P, f(P)=16, c(P)=negru ==> CTC #3: P
+17: nod A, d(A)=17,  c(A)=gri
+18: nod A, f(A)=18, c(A)=negru ==> CTC #4: A
+19: nod B, d(B)=19,  c(B)=gri
+20: nod B, f(B)=20, c(B)=negru ==> CTC #5: B
+21: nod G, d(G)=21, c(G)=gri
+22: nod G, f(G)=22, c(G)=negru ==> CTC #6: G
+23: nod H, d(H)=23, c(H)=gri
+24: nod H, f(H)=24, c(H)=negru ==> CTC #7: H
+25: nod C, d(C)=25,  c(C)=gri
+26: nod D, d(D)=26,  c(D)=gri
+27: nod E, d(E)=27,  c(E)=gri
+28: nod E, f(E)=28,  c(E)=negru
+29: nod D, f(D)=29,  c(D)=negru
+30: nod C, f(C)=30, c(C)=negru ==> CTC #8: C D E
+31: nod F, d(F)=31,  c(F)=gri
+32: nod F, f(F)=32,  c(F)=negru ==> CTC #9: F

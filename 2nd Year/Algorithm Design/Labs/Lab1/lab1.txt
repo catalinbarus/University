@@ -1,0 +1,171 @@
+1.
+
+a)
+	power(baza, n) {
+
+		rezultat = 1;
+		for i = 1:n {
+			rezultat = rezultat * baza; 
+		}
+	}
+
+	Complexitate: Theta(n)
+
+b)
+
+	power(baza, n) {
+		if (n != 0) {
+			return (baza * power(baza, n - 1));
+		}
+
+		else
+			return 1;
+	}
+
+	T(n) = T(n - 1) + Theta(1)
+
+	T(n - 1) = T(n - 2) + Theta(1)
+
+	.
+	.
+	.
+
+	T(n - k) = T(n - k - 1) + Theta(1)
+
+	.
+	.
+	.
+
+	T(n - h) = Theta(1)
+
+	T(n) = (h + 1) * Theta(1)
+
+	n - h = 1;
+
+	n = h + 1 ==> h = n - 1
+
+	T(n) = n * Theta(1) ==>> Theta(n)
+
+
+c)	
+
+	power(baza, n) {
+		if (n == 0) {
+			return 1;
+		}
+
+		else if (n % 2 == 0 && n > 0) {
+			return power(baza, n/2) * power(baza, n/2);
+		}
+
+		else if (n % 2 != 0 && n > 0) {
+			return x * power(baza, (n-1)/2) * power(baza, (n-1)/2)
+		}
+	}
+
+	Neeficient: T(n) = 2*T(n / 2) + Theta(1)
+
+	f(n) = Theta(1)
+	n^(log b (a)) = n
+	==> f(n) = 1
+	a = 2
+	b = 2
+
+	f(n) < n^(log b (a)) ==> cazul 1 Master ==> T(n) apartine lui Theta(n^(log b (a))) == Theta(n)
+
+	Eficient: T(n) = T(n / 2) + Theta(1)
+
+	f(n) = Theta(1)
+
+	n^(log b (a)) = n^(log 2 (1)) = n^0 = 1
+
+	==>
+
+	f(n) = n^(log b (a)) ==> cazul 2 Master ==> T(n) apartine lui Theta(n^(log b (a)) * (log n)^(k + 1)) <==>
+
+	T(n) apartine lui Theta(n^0 * log n) <==> T(n) apartine lui Theta(log n)
+
+
+2.
+
+a)
+
+	fib(n) {
+		if (n == 0) {
+			return 0;
+		}
+
+		else if (n == 1) {
+			return 1;
+		}
+
+		else {
+			return fib(n - 1) + fib(n - 2);
+		}
+	}
+
+	inferior: T(n) = 2 * T(n - 2) + Theta(1)
+	superior: T(n) = 2 * T(n - 1) + Theta(1)
+
+	inferior:
+
+	T(n) = 2 * T(n - 2) + Theta(1)
+
+	2 * T(n - 2) = 4 * T(n - 4) + 2 * Theta(1)
+	4 * T(n - 4) = 8 * T(n - 6) + 4 * Theta(1)
+	.
+	.
+	.
+	(2^k) * T(n - 2k) = (2^(k + 1)) * T(n - 2*(k+1)) + (2^k) * Theta(1)
+	.
+	.
+	.
+	(2^h) * T(n - 2h) = (2^h) * Theta(1)
+
+	n - 2h = 1 ==> h = (n - 1) / 2
+
+	==>
+
+	T(n) = Theta(1) + 2 * Theta(1) + 4 * Theta(1) + ... + (2^h) * Theta(1) = Theta(1) * (2^(h + 1) - 1) (suma de progresie geometrica) =
+
+	= Theta(1) * (2^((n + 1)/2) - 1) = Theta(1) * (2^((n + 1)/2)) - Theta(1) ==> T(n) apartine lui Theta(2^(n/2))
+
+	superior:
+
+	T(n) = 2 * T(n - 1) + Theta(1)
+
+	2 * T(n - 1) = 4 * T(n - 2) + 2 * Theta(1)
+	4 * T(n - 2) = 8 * T(n - 3) + 4 * Theta(1)
+	.
+	.
+	.
+	(2^k) * T(n - k) = (2^(k + 1)) * T(n - (k+1)) + (2^k) * Theta(1)
+	.
+	.
+	.
+	(2^h) * T(n - h) = (2^h) * Theta(1)
+
+	n - h = 1 ==> h = n - 1
+
+	==>
+
+	T(n) = Theta(1) + 2 * Theta(1) + 4 * Theta(1) + ... + (2^h) * Theta(1) = Theta(1) * (2^(h + 1) - 1) (suma de progresie geometrica) =
+
+	= Theta(1) * (2^(n) - 1) = Theta(1) * (2^(n)) - Theta(1) ==> T(n) apartine lui Theta(2^n)
+
+b)
+
+	fib(n) {
+
+		primul_termen = 0;
+		al_doilea_termen = 1;
+		for i = 1:n {
+
+			print(primul_termen);
+			termenul_urm = primul_termen + al_doilea_termen;
+			primul_termen = al_doilea_termen;
+			al_doilea_termen = termenul_urm;
+		}
+	}
+
+	Complexitate: Tetha(n)
