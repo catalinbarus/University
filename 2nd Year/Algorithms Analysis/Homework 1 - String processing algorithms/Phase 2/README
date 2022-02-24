@@ -1,0 +1,35 @@
+Name: Barus Catalin-Stefan
+Group: 321CD
+
+***** AA Homework - Second Phase *****
+
+ *** String Processing Algorithms ***
+
+Contents of the archive:
+
+1) algo.h - this file contains functions that implement the solution to the string processing problem using the Knuth-Morris-Pratt algorithm and the Edit Distance algorithm based on the Levenshtein distance.
+
+2) KMP.cpp - this file reads the path to an input test from stdin and applies the KMP algorithm, implemented in algo.h . It also displays the result in an out folder.
+
+3) Edit.cpp - this file reads the path to an input test from stdin and applies the Edit Distance algorithm, implemented in algo.h . It also displays the result in an out folder.
+
+4) Makefile - has rules for building and executing the program, but also contains a clean rule for the object file.
+
+5) algo.o - object file created upon calling the Makefile that contains the implementations of the functions defined in algo.h .
+
+6) in - folder that contains 10 input tests that work on both algorithms implemented in algo.h .
+
+7) out - this folder displays the results of either KMP or Edit Distance, for a given input test.
+
+8) ref_KMP - this folder contains all the correct outputs for all the tests running the KMP algorithm.
+
+9) ref_EditDistance - this folder contains all the correct outputs for all the tests running the Edit Distance algorithm.
+
+
+For the implementation of the chosen algorithms, parts of code were directly taken from Geeks for Geeks and are available here:
+
+For the KMP algorithm:  
+https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/ 
+
+For the Edit Distance algorithm:
+https://www.geeksforgeeks.org/edit-distance-dp-5/
