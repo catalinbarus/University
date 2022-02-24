@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/student/Desktop/CN2/lab7/lab07_skel_v2/cpu_test_isim_beh.exe" -prj "/home/student/Desktop/CN2/lab7/lab07_skel_v2/cpu_test_beh.prj" "work.cpu_test" "work.glbl" 

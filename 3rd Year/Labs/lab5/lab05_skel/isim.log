@@ -1,0 +1,44 @@
+ISim log file
+Running: /home/student/Desktop/CN2/lab5/lab05_skel/unitTestCpu_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/student/Desktop/CN2/lab5/lab05_skel/unitTestCpu_isim_beh.wdb 
+ISim P.20131013 (signature 0xfbc00daa)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 2000 ns
+Simulator is doing circuit initialization process.
+Start cpu ...
+Legend:
+OPERATION OP1, OP2 - STAGE: OK <=> PASS
+OPERATION OP1, OP2 - STAGE: FAILED => EXPECTED_VALUE VS COMPUED_VALUE <=> FAIL
+Init regs..
+Finished circuit initialization process.
+
+PC =>    0
+LDI R16, 5 - ID: FAILED
+LDI R16, 5 - WB: FAILED => (10) vs (5)
+
+PC =>    1
+RJMP LABEL - ID: FAILED => OPCODE_TYPE: (          26 ) vs (  30 ). Check defines.vh.
+
+PC =>    2
+LDI R17, 15 - ID: FAILED
+LDI R17, 15 - WB: FAILED => (2) vs (15)
+
+PC =>    3
+RET - ID: FAILED. RET instruction should be in GROUP_TWO_CYCLE_MEM
+RET - EX: FAILED. signal CONTROL_STACK_PREINC should be active
+RET - MEM: cycle_count 0, FAILED. signal CONTROL_STACK_PREINC should be active
+RET - MEM: FAILED: saved_pc =>           6 vs     0
+
+PC =>    4
+LDI R17, 10 - ID: FAILED
+LDI Rx, 10 - WB: FAILED => (2) vs (10)
+
+PC =>    6
+LDI R18, 20 - ID: FAILED
+LDI R17, 20 - WB: FAILED => (0) vs (20)
+# exit 0

@@ -1,0 +1,6 @@
+set nolist
+set ts=3
+set sts=3
+set noexpandtab
+set nospell
+set cursorline

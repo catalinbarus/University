@@ -1,0 +1,46 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o /home/student/Desktop/CN2/lab5/lab05_skel/unitTestCpu_isim_beh.exe -prj /home/student/Desktop/CN2/lab5/lab05_skel/unitTestCpu_beh.prj work.unitTestCpu work.glbl 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/state_machine.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/signal_generation_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/reg_file_interface_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/decode_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/bus_interface_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/sram.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/rom.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/register_file.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/control_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/alu.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/cpu.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/unitTest.v" into library work
+WARNING:HDLCompiler:485 - "test_brbs.vh" Line 34: Illegal format specifier ( for display
+WARNING:HDLCompiler:485 - "test_brcs.vh" Line 34: Illegal format specifier ( for display
+Analyzing Verilog file "/home/student/Desktop/CN2/lab5/lab05_skel/unitTestCpu.v" into library work
+Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 84084 KB
+Fuse CPU Usage: 1050 ms
+Compiling module state_machine
+Compiling module decode_unit(INSTR_WIDTH=16)
+Compiling module signal_generation_unit
+Compiling module reg_file_interface_unit(INSTR_WI...
+Compiling module bus_interface_unit(DATA_WIDTH=8,...
+Compiling module control_unit(INSTR_WIDTH=16,I_AD...
+Compiling module alu(DATA_WIDTH=8)
+Compiling module rom(DATA_WIDTH=16,ADDR_WIDTH=10)
+Compiling module dual_port_sram(DATA_WIDTH=8,ADDR...
+Compiling module sram(DATA_WIDTH=8,ADDR_WIDTH=7)
+Compiling module cpu
+Compiling module unitTest
+Compiling module unitTestCpu
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 7 sub-compilation(s) to finish...
+Compiled 14 Verilog Units
+Built simulation executable /home/student/Desktop/CN2/lab5/lab05_skel/unitTestCpu_isim_beh.exe
+Fuse Memory Usage: 647648 KB
+Fuse CPU Usage: 1140 ms
+GCC CPU Usage: 2470 ms

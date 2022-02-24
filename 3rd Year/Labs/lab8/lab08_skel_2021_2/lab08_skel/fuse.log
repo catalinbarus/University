@@ -1,0 +1,52 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o /home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/cpu_test_isim_beh.exe -prj /home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/cpu_test_beh.prj work.cpu_test work.glbl 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/timer_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/state_machine.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/signal_generation_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/reg_file_interface_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/interrupt_controller.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/gpio_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/decode_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/bus_interface_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/sram.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/rom.v" into library work
+WARNING:HDLCompiler:1419 - "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/rom.v" Line 15: Case statement with no case item violates IEEE 1800 syntax
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/register_file.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/gpio.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/control_unit.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/alu.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/cpu.v" into library work
+Analyzing Verilog file "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/cpu_test.v" into library work
+Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:1016 - "/home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/cpu_test.v" Line 15: Port debug_pc is not connected to this instance
+Completed static elaboration
+Fuse Memory Usage: 83928 KB
+Fuse CPU Usage: 1150 ms
+Compiling module state_machine
+Compiling module decode_unit(INSTR_WIDTH=16)
+Compiling module signal_generation_unit
+Compiling module reg_file_interface_unit(INSTR_WI...
+Compiling module bus_interface_unit(DATA_WIDTH=8,...
+Compiling module control_unit(INSTR_WIDTH=16,DATA...
+Compiling module alu(DATA_WIDTH=8)
+Compiling module dual_port_sram(DATA_WIDTH=8,ADDR...
+Compiling module rom(DATA_WIDTH=16,ADDR_WIDTH=10)
+Compiling module sram(DATA_WIDTH=8,ADDR_WIDTH=7)
+Compiling module gpio_unit(DATA_WIDTH=8)
+Compiling module timer_unit(DATA_WIDTH=8)
+Compiling module interrupt_controller(DATA_WIDTH=...
+Compiling module io_sram(DATA_WIDTH=8,ADDR_WIDTH=...
+Compiling module cpu
+Compiling module cpu_test
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 10 sub-compilation(s) to finish...
+Compiled 17 Verilog Units
+Built simulation executable /home/student/Desktop/CN2/lab8/lab08_skel_2021_2/lab08_skel/cpu_test_isim_beh.exe
+Fuse Memory Usage: 646048 KB
+Fuse CPU Usage: 1260 ms
+GCC CPU Usage: 3590 ms

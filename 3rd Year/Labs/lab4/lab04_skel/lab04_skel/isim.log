@@ -1,0 +1,192 @@
+ISim log file
+Running: /home/student/Desktop/CN2/lab4/lab04_skel/lab04_skel/unitTestCpu_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/student/Desktop/CN2/lab4/lab04_skel/lab04_skel/unitTestCpu_isim_beh.wdb 
+ISim P.20131013 (signature 0xfbc00daa)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 2000 ns
+Simulator is doing circuit initialization process.
+Start cpu ...
+Legend:
+OPERATION OP1, OP2 - STAGE: OK <=> PASS
+OPERATION OP1, OP2 - STAGE: FAILED => EXPECTED_VALUE VS COMPUED_VALUE <=> FAIL
+Init regs..
+
+PC => 0
+Finished circuit initialization process.
+LDI R16, 5 - ID: OK
+LDI R16, 5 - WB: OK (R16 = 5)
+
+PC => 1
+LDI R17, 15 - ID: OK
+LDI R17, 15 - WB: OK (R17 = 15)
+
+PC => 2
+PUSH R16 - ID: OK
+PUSH R16 - MEM: OK (bus_address = 7f, signals[`CONTROL_STACK_POSTDEC] = 1)
+PUSH R16 - MEM: OK (sp = 000000bf)
+
+PC => 3
+PUSH R17 - ID: OK
+PUSH R17 - MEM: OK (bus_address = 7e, signals[`CONTROL_STACK_POSTDEC] = 1)
+PUSH R17 - MEM: OK (sp = 000000be)
+
+PC => 4
+MOV R30, R16 - ID: OK
+MOV R30, R16 - WB: OK (R30 = 5) 
+
+PC => 5
+SUB R30, R17 - ID: OK
+SUB R30, R17 - EX: OK (alu_out = -10)
+SUB R30, R17 - WB: OK (R30 = -10)
+
+PC => 6
+BRBS LABEL - ID: OK (FLAG: (001)). Check defines.vh.
+
+PC => 7
+BRBS LABEL - ID: OK (FLAG: (010)). Check defines.vh.
+
+PC => 10
+SUB R17, R16 - ID: OK
+SUB R17, R16 - EX: OK (alu_out = 10)
+SUB R17, R16 - WB: OK (R17 = 10)
+
+PC => 11
+RJMP LABEL - ID: OK
+
+PC => 4
+MOV R30, R16 - ID: OK
+MOV R30, R16 - WB: OK (R30 = 5) 
+
+PC => 5
+SUB R30, R17 - ID: OK
+SUB R30, R17 - EX: OK (alu_out = -5)
+SUB R30, R17 - WB: OK (R30 = -5)
+
+PC => 6
+BRBS LABEL - ID: OK (FLAG: (001)). Check defines.vh.
+
+PC => 7
+BRBS LABEL - ID: OK (FLAG: (010)). Check defines.vh.
+
+PC => 10
+SUB R17, R16 - ID: OK
+SUB R17, R16 - EX: OK (alu_out = 5)
+SUB R17, R16 - WB: OK (R17 = 5)
+
+PC => 11
+RJMP LABEL - ID: OK
+
+PC => 4
+MOV R30, R16 - ID: OK
+MOV R30, R16 - WB: OK (R30 = 5) 
+
+PC => 5
+SUB R30, R17 - ID: OK
+SUB R30, R17 - EX: OK (alu_out = 0)
+SUB R30, R17 - WB: OK (R30 = 0)
+
+PC => 6
+BRBS LABEL - ID: OK (FLAG: (001)). Check defines.vh.
+
+PC => 12
+PUSH R16 - ID: OK
+PUSH R16 - MEM: OK (bus_address = 7d, signals[`CONTROL_STACK_POSTDEC] = 1)
+ISim P.20131013 (signature 0xfbc00daa)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 2000 ns
+Simulator is doing circuit initialization process.
+Start cpu ...
+Legend:
+OPERATION OP1, OP2 - STAGE: OK <=> PASS
+OPERATION OP1, OP2 - STAGE: FAILED => EXPECTED_VALUE VS COMPUED_VALUE <=> FAIL
+Init regs..
+
+PC => 0
+Finished circuit initialization process.
+LDI R16, 5 - ID: OK
+LDI R16, 5 - WB: OK (R16 = 5)
+
+PC => 1
+LDI R17, 15 - ID: OK
+LDI R17, 15 - WB: OK (R17 = 15)
+
+PC => 2
+PUSH R16 - ID: OK
+PUSH R16 - MEM: OK (bus_address = 7f, signals[`CONTROL_STACK_POSTDEC] = 1)
+PUSH R16 - MEM: OK (sp = 000000bf)
+
+PC => 3
+PUSH R17 - ID: OK
+PUSH R17 - MEM: OK (bus_address = 7e, signals[`CONTROL_STACK_POSTDEC] = 1)
+PUSH R17 - MEM: OK (sp = 000000be)
+
+PC => 4
+MOV R30, R16 - ID: OK
+MOV R30, R16 - WB: OK (R30 = 5) 
+
+PC => 5
+SUB R30, R17 - ID: OK
+SUB R30, R17 - EX: OK (alu_out = -10)
+SUB R30, R17 - WB: OK (R30 = -10)
+
+PC => 6
+BRBS LABEL - ID: OK (FLAG: (001)). Check defines.vh.
+
+PC => 7
+BRBS LABEL - ID: OK (FLAG: (010)). Check defines.vh.
+
+PC => 10
+SUB R17, R16 - ID: OK
+SUB R17, R16 - EX: OK (alu_out = 10)
+SUB R17, R16 - WB: OK (R17 = 10)
+
+PC => 11
+RJMP LABEL - ID: OK
+
+PC => 4
+MOV R30, R16 - ID: OK
+MOV R30, R16 - WB: OK (R30 = 5) 
+
+PC => 5
+SUB R30, R17 - ID: OK
+SUB R30, R17 - EX: OK (alu_out = -5)
+SUB R30, R17 - WB: OK (R30 = -5)
+
+PC => 6
+BRBS LABEL - ID: OK (FLAG: (001)). Check defines.vh.
+
+PC => 7
+BRBS LABEL - ID: OK (FLAG: (010)). Check defines.vh.
+
+PC => 10
+SUB R17, R16 - ID: OK
+SUB R17, R16 - EX: OK (alu_out = 5)
+SUB R17, R16 - WB: OK (R17 = 5)
+
+PC => 11
+RJMP LABEL - ID: OK
+
+PC => 4
+MOV R30, R16 - ID: OK
+MOV R30, R16 - WB: OK (R30 = 5) 
+
+PC => 5
+SUB R30, R17 - ID: OK
+SUB R30, R17 - EX: OK (alu_out = 0)
+SUB R30, R17 - WB: OK (R30 = 0)
+
+PC => 6
+BRBS LABEL - ID: OK (FLAG: (001)). Check defines.vh.
+
+PC => 12
+PUSH R16 - ID: OK
+PUSH R16 - MEM: OK (bus_address = 7d, signals[`CONTROL_STACK_POSTDEC] = 1)
+# exit 0
