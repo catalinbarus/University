@@ -1,0 +1,29 @@
+Student: Barus Catalin-Stefan
+Grupa: 321CD
+
+** Laboratorul 5 - ICMP **
+
+Pentru acest laborator, am pornit de la indicatiile de pe ocw si cele din
+whiteboard pentru a putea implementa functionalitatile de ping si traceroute.
+
+** Functia ping **
+
+Pentru a implementa ping, am completat campurile structurilor ip si icmp, dupa
+indicatiile din whiteboard, cu o singura diferenta. Initial pentru adresa sursa,
+"ip_hdr->saddr", initial am incercat sa o completez folosind adresa mea IP, insa
+acest lucru imi facea ca ping-ul sa nu faca nimic, nu stiu exact de ce. Am 
+reusit sa-l fac sa mearga folosing functia get_interface_ip. Toata aceasta
+implementare am facut-o intr-un for pana la count, numarul cerut de ping-uri
+trimis de la linia de comanda. la finalul fiecarei iteratii, afisez sequence 
+number-ul, ttl-ul si timpul efectuat.
+
+** Functia traceroute **
+
+Pentru aceasta functie, codul este asemanator cu cel de la ping, am initializat
+structurile de ip si icmp cu conditia ca acum ma opresc cand tipul de icmp este
+diferit de 11, adica daca este diferit de time exceeded sau daca s-a depasit
+numarul de ieratii maxim impus de mine. De asemenea, la fiecare pas ma folosesc
+functia inet_ntoa pentru a afisa adresele ip intr-un format human readable. Nu
+stiu in schimb daca am iterat cum trebuie, cand rulez traceroute normal imi 
+afiseaza o cale mai scurta decat cea din implementarea din laborator.
+

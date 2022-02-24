@@ -1,0 +1,44 @@
+Student: Barus Catalin-Stefan
+Grupa: 321CD
+
+*** Laboratorul 2 - Protocolul STOP AND WAIT ***
+
+Implementarea acestui protocol, porneste de la conceptul de baza prezentat si la
+la lboratorul precedent si anume acela de prelucrare a datelor dintr-un fisier.
+
+Pentru inceput, in send.c imi deschid fisierul ale carui date vreau sa
+le trimit si trimit catre receiver numele si dimensiunea fisierului sursa. In 
+recv.c primesc aceste date, si ma asigur ca sunt doar preluate din motive de
+securitate, nu sunt scrise in fisierul destinatie efectiv. 
+
+Mai departe, citesc din fisierul sursa cate un pachet de 1400 de bytes pe care
+il trimit folosind functia send_message. Pachetul transmis, va fi prelucrat in
+recv.c. In acest prgogram, dupa ce pachetul este primit, deschid (sau imi fac
+daca nu exista deja) fisierul de destinatie in care voi scrie pachetul primit.
+Folosesc un while in care voi scrie toate pachetele de date primite pana primesc
+cuvantul cheie "HALT". Atunci cand din send.c este trimis mesajul "HALT", practic
+anunt receiverul ca transmisiunea datelor s-a incheiat si se poate iesi din while.
+Dupa care, tot ce mai e de facut e sa inchidem fisierul in care s-au primit 
+datele. In cazul in care in recv.c primesc numele fisierului meu sursa sau 
+o dimensiune urmata de cuvantul cheie "bytes" stiu sigur ca pot sari peste
+instructiunile de scriere in fisier.
+
+Am verificat folosind utilitarul diff integritatea fisierului de destinatie, iar
+totul este ok, datele au fost trimise perfect. In schimb am intampinat un mic
+bug, si nu stiu daca e de la codul meu sau de la masina virtuala. Atunci cand 
+rulez ./run_experiment.sh imi termina de rulat tot codul, dar in terminal, nu
+apare acea linie cu user ul si path ul in care ma aflu, in schimb apare putin 
+mai sus intre afisarile u printf din cod.
+
+
+Principalele probleme ce pot fi intalnite in acest protocol sunt:
+
+- Daca in timp ce trimitem date, acestea sunt cumva pierdute, nu vor ajunge
+  niciodata la receiver, deci acesta la randul lui nu va trimite niciodata ACK
+  catre sender, ceea ce inseamna ca atat senderul cat si receiverul vor astepta
+  la infinit sa primesca ceva
+
+- Se poate intampla si cazul invers, datele dintr-un pachet au fost trimise,
+  in schimb mesajul aferent de ACK s-a pierdut pe drum si nu ajunge niciodata la
+  sender, caz in care din nou cele doua parti asteapta la infinit sa primeasca
+  ceva

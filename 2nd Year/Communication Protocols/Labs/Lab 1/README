@@ -1,0 +1,32 @@
+Student: Barus Catalin-Stefan
+Grupa: 321CD
+
+** Exercitiul 1 - Utilitarul cat **
+
+Pentru acest utilitar, am incercat sa respect conditiile impuse in laborator si 
+sa incerc sa folosesc exclusiv functiile de open, close, read, write pentru a ma
+familiariza cu conceptele de PC mai bine. Astfel, implmenetarea de baza se
+foloseste in mare de exemplul furnizat in laborator. Mai exact, m-am folosit de
+functia open pentru a deschide fisierul in modul de read only si pentru a obtine
+descriptorul de fisier asociat acestuia. Dupa ce am verificat ca descriptorul
+valid, am folosit lseek pentru a ma pozitiona cu cursoul la inceputul fisierului
+pentru a putea citit tot continutul fisierului. Mai, departe am citit folosind
+functia read fisierul deschis si am mutat intr-un buffer continutul acestuia. 
+Pentru a scrie la stdout continutul mutat in buffer, am folosit functia write
+folosind pe post de descriptor 1, descriptorul asociat in C cu stdout. De
+asemenea, pentru a implmenta utilitarul de cat (dar si cel de tac de mai tarziu)
+am folosit parametrii de la linia din comanda din argv, pentru a simula efectiv
+cum ar arata pe Linux comanda.
+
+
+** Exercitiul 2 Bonus - Utilitarul tac **
+
+Pentru acest utilitar, am folosit identic comenzile de deschidere si cititre din
+fisier cu cele din implementarea lui cat, modificarile de baza apar efectiv
+asupra bufferului folosit in functia write. Mai exact, parcurg bufferul caracter
+cu caracter de la final, si stochez intr-un buffer auxiliar continutul pana dau
+de un '\n', moment in care iau acel buffer auxiliar si il inversez, dupa care
+il afisez la stdout similar cu implementarea din cat, folosind functia write.
+Am verificat dupa aceea si cazul in care dau de primul cuvant din buffer ul
+original (parcurgand de la coada ma bazez de \n ul de la cuvantul urmator, iar
+primul cuvant nu are inaintea sa un \n) si il afisez.

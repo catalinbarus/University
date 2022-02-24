@@ -1,0 +1,459 @@
+a. realizați cereri de adresă (A) pentru fiecare gazdă din tabelul de mai jos
+
+Comanda: dig A single-v4.protocoale.club
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> A single-v4.protocoale.club
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21674
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;single-v4.protocoale.club.	IN	A
+
+;; ANSWER SECTION:
+single-v4.protocoale.club. 377	IN	A	127.0.0.1
+
+;; Query time: 88 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 12:50:37 EEST 2021
+;; MSG SIZE  rcvd: 70
+
+Comanda: dig A single-v6.protocoale.club
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> A single-v6.protocoale.club
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21072
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;single-v6.protocoale.club.	IN	A
+
+;; Query time: 87 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 12:54:07 EEST 2021
+;; MSG SIZE  rcvd: 54
+
+Comanda: dig A multi-v4.protocoale.club
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> A multi-v4.protocoale.club
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 11410
+;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;multi-v4.protocoale.club.	IN	A
+
+;; ANSWER SECTION:
+multi-v4.protocoale.club. 377	IN	A	127.2.2.2
+multi-v4.protocoale.club. 377	IN	A	127.3.3.3
+multi-v4.protocoale.club. 377	IN	A	127.1.1.1
+multi-v4.protocoale.club. 377	IN	A	127.4.4.4
+
+;; Query time: 43 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 12:55:05 EEST 2021
+;; MSG SIZE  rcvd: 117
+
+Comanda: dig A multi-v6.protocoale.club
+
+; <<>> DiG 9.16.1-Ubuntu <<>> A multi-v6.protocoale.club
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 5529
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;multi-v6.protocoale.club.	IN	A
+
+;; Query time: 51 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 12:55:36 EEST 2021
+;; MSG SIZE  rcvd: 53
+
+Comanda: dig A dorinel.protocoale.cluB
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> A dorinel.protocoale.cluB
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50963
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;dorinel.protocoale.cluB.	IN	A
+
+;; ANSWER SECTION:
+dorinel.protocoale.cluB. 377	IN	A	127.42.0.0
+
+;; Query time: 163 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 12:56:46 EEST 2021
+;; MSG SIZE  rcvd: 68
+
+Comanda: dig A multi.protocoale.cluB
+
+; <<>> DiG 9.16.1-Ubuntu <<>> A multi.protocoale.cluB
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 25843
+;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;multi.protocoale.cluB.		IN	A
+
+;; ANSWER SECTION:
+multi.protocoale.cluB.	377	IN	A	127.3.3.3
+multi.protocoale.cluB.	377	IN	A	127.2.2.2
+multi.protocoale.cluB.	377	IN	A	127.4.4.4
+multi.protocoale.cluB.	377	IN	A	127.1.1.1
+
+;; Query time: 83 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 12:57:20 EEST 2021
+;; MSG SIZE  rcvd: 114
+
+Comanda: dig A pc.protocoale.cluB
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> A pc.protocoale.cluB
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 24552
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;pc.protocoale.cluB.		IN	A
+
+;; ANSWER SECTION:
+pc.protocoale.cluB.	377	IN	CNAME	pcom.protocoale.cluB.
+pcom.protocoale.cluB.	376	IN	CNAME	protocoale.protocoale.cluB.
+protocoale.protocoale.cluB. 376	IN	A	127.42.42.42
+
+;; Query time: 131 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 12:57:59 EEST 2021
+;; MSG SIZE  rcvd: 107
+
+Comanda: dig A pcom.protocoale.cluB
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> A pcom.protocoale.cluB
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 6326
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;pcom.protocoale.cluB.		IN	A
+
+;; ANSWER SECTION:
+pcom.protocoale.cluB.	336	IN	CNAME	protocoale.protocoale.cluB.
+protocoale.protocoale.cluB. 336	IN	A	127.42.42.42
+
+;; Query time: 0 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 12:58:39 EEST 2021
+;; MSG SIZE  rcvd: 90
+
+Comanda: dig A protocoale.protocoale.cluB
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> A protocoale.protocoale.cluB
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36612
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;protocoale.protocoale.cluB.	IN	A
+
+;; ANSWER SECTION:
+protocoale.protocoale.cluB. 289	IN	A	127.42.42.42
+
+;; Query time: 0 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 12:59:26 EEST 2021
+;; MSG SIZE  rcvd: 71
+
+Comanda: dig A protocoale.club
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> A protocoale.club
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 23269
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;protocoale.club.		IN	A
+
+;; Query time: 39 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 13:00:17 EEST 2021
+;; MSG SIZE  rcvd: 44
+
+b. pentru gazdele care au (și) adrese IPv6, realizați cereri de tip AAAA
+
+Comanda: dig AAAA single-v6.protocoale.club
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> AAAA single-v6.protocoale.club
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12587
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;single-v6.protocoale.club.	IN	AAAA
+
+;; ANSWER SECTION:
+single-v6.protocoale.club. 377	IN	AAAA	::1
+
+;; Query time: 43 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 13:03:26 EEST 2021
+;; MSG SIZE  rcvd: 82
+
+Comanda: dig AAAA single.protocoale.club
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> AAAA single.protocoale.club
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 58767
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;single.protocoale.club.		IN	AAAA
+
+;; ANSWER SECTION:
+single.protocoale.club.	377	IN	AAAA	::1
+
+;; Query time: 47 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 13:04:12 EEST 2021
+;; MSG SIZE  rcvd: 79
+
+Comanda: dig AAAA multi-v6.protocoale.club
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> AAAA multi-v6.protocoale.club
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42753
+;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;multi-v6.protocoale.club.	IN	AAAA
+
+;; ANSWER SECTION:
+multi-v6.protocoale.club. 377	IN	AAAA	::4
+multi-v6.protocoale.club. 377	IN	AAAA	::3
+multi-v6.protocoale.club. 377	IN	AAAA	::1
+multi-v6.protocoale.club. 377	IN	AAAA	::2
+
+;; Query time: 47 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 13:05:04 EEST 2021
+;; MSG SIZE  rcvd: 165
+
+c. pentru serverul de mail din tabelul de mai jos, realizați o cerere de tip MX
+
+Comanda: dig MX protocoale.club
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> MX protocoale.club
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12155
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;protocoale.club.		IN	MX
+
+;; ANSWER SECTION:
+protocoale.club.	377	IN	MX	10 alt1.gmail-smtp-in.l.google.com.
+protocoale.club.	377	IN	MX	30 alt3.gmail-smtp-in.l.google.com.
+protocoale.club.	377	IN	MX	20 alt2.gmail-smtp-in.l.google.com.
+
+;; Query time: 39 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 13:07:35 EEST 2021
+;; MSG SIZE  rcvd: 133
+
+d. realizați o cerere DNS în care să afișați doar secțiunea de RR-uri autoritare
+
+Comanda: dig single-v6.protocoale.club +noall +authority
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> single-v6.protocoale.club +noall +authority
+;; global options: +cmd
+
+e. folosiți mai multe servere de nume pentru a interoga adresa IP a google.com
+
+Comanda: dig A @82.165.76.185 google.com +short
+
+Output: 142.250.185.142
+
+Comanda: dig A  @202.164.44.246 google.com +short
+
+Rezultat: 142.250.195.14
+
+Acelasi host poate detine mai multe adrese IP si sa fie folosite
+aleatoriu in functie de locatie, timp sau supraincarcare.
+
+f. realizați o interogare de tip bulk (folosind un fișier pentru definirea cererilor) 
+la serverul de nume 8.8.8.8 pentru toate gazdele din tabelul de mai jos; fișierul 
+folosit trebuie inclus în arhiva cu rezolvări
+
+Comanda: dig @8.8.8.8 -f interogari.txt +short
+
+Output:
+
+127.0.0.1
+127.0.0.1
+127.42.0.0
+127.1.1.1
+127.3.3.3
+127.4.4.4
+127.2.2.2
+127.3.3.3
+127.1.1.1
+127.4.4.4
+127.2.2.2
+pcom.protocoale.club.
+protocoale.protocoale.club.
+127.42.42.42
+protocoale.protocoale.club.
+127.42.42.42
+127.42.42.42
+
+g. folosind opțiunea de tracing, analizați pașii necesari aflării adresei IPv4 
+pentru test.dorinel.protocoale.club; notați care sunt serverele de nume ce răspund 
+pentru protocoale.club, respectiv pentru zona dorinel.protocoale.club
+
+Comanda: dig test.dorinel.protocoale.club +trace
+
+Output:
+
+; <<>> DiG 9.16.1-Ubuntu <<>> test.dorinel.protocoale.club +trace
+;; global options: +cmd
+.			4502	IN	NS	j.root-servers.net.
+.			4502	IN	NS	d.root-servers.net.
+.			4502	IN	NS	l.root-servers.net.
+.			4502	IN	NS	a.root-servers.net.
+.			4502	IN	NS	h.root-servers.net.
+.			4502	IN	NS	i.root-servers.net.
+.			4502	IN	NS	f.root-servers.net.
+.			4502	IN	NS	g.root-servers.net.
+.			4502	IN	NS	m.root-servers.net.
+.			4502	IN	NS	b.root-servers.net.
+.			4502	IN	NS	e.root-servers.net.
+.			4502	IN	NS	k.root-servers.net.
+.			4502	IN	NS	c.root-servers.net.
+;; Received 262 bytes from 127.0.0.53#53(127.0.0.53) in 4 ms
+
+club.			172800	IN	NS	ns1.dns.nic.club.
+club.			172800	IN	NS	ns2.dns.nic.club.
+club.			172800	IN	NS	ns3.dns.nic.club.
+club.			172800	IN	NS	ns4.dns.nic.club.
+club.			172800	IN	NS	ns5.dns.nic.club.
+club.			172800	IN	NS	ns6.dns.nic.club.
+club.			86400	IN	DS	29815 8 1 7F2B8E1D8B715BB382111A84F4552A599462017A
+club.			86400	IN	DS	29815 8 2 3B67F899B57454E924DD1EFAE729B8741D61BA9BC8D76CD888919E5C 0950CA23
+club.			86400	IN	RRSIG	DS 8 1 86400 20210512050000 20210429040000 14631 . lqZmkM9Ees36zG4BrZcxSvj9ROcMWgU88nkmmbItB+jOl+OPl6Penb6S dP3fvBn/mRs1flqs+oHJnCSKyeFHIG+/vvcVTAI2j1KJlfKl7IBbT5Xm YS1oWZXK8jMbnfNh5Rw/ZjECV8mRFKk0jBG4LsI7A9sDHUi6svjoEaVv Xfvo/QSe2ZBUWFLj40yPrl0rceeOEuUpjjJZ3s+MVW4Spk7ROhRwGaNY Nqkzl3PWOOoIxqwgVtYfGHRcEE9jJe2xNNsgFQZzRkDr54UsqpJW82rL HePmDXWuEfBmABPdZJ+R2WgLHQW27CRug88kDXPF8RPN11wf1A2O/Igb mPUdGQ==
+;; Received 808 bytes from 199.7.83.42#53(l.root-servers.net) in 8 ms
+
+protocoale.club.	3600	IN	NS	dns1.registrar-servers.com.
+protocoale.club.	3600	IN	NS	dns2.registrar-servers.com.
+protocoale.club.	3600	IN	DS	51214 13 1 30880D616BB4E2F12FAF6313FE54CD2A14371718
+protocoale.club.	3600	IN	RRSIG	DS 8 2 3600 20210528144008 20210428142443 34263 club. jRkBLKdb9yjNOgu3W+E3RNDqUmacffbMseykM0LD/7+f19l6O3+zTHTD AbB1hzUepLyHY9m2ljoXAnFh79JYS7xMv/MF2F7EXuPGf0KVPNPTbASt eWiR0IydAO6ckcXCsVk0GucO62EhN/ZKP5cG6R/Va62Z2RKuDf2KRZuv /AexhPREj5g9yQl7AwIu+oHj5Hru0jyvADb8CWeOzsKW+w==
+;; Received 348 bytes from 156.154.144.215#53(ns1.dns.nic.club) in 40 ms
+
+dorinel.protocoale.club. 300	IN	NS	potato.dfilip.xyz.
+dorinel.protocoale.club. 3601	IN	NSEC	multi.protocoale.club. NS RRSIG NSEC
+dorinel.protocoale.club. 3601	IN	RRSIG	NSEC 13 3 3601 20210506000000 20210415000000 20015 protocoale.club. tWimESeBLDRASP9JX4+5ZpsXsNJaJDAJXqzZ6arxUPmoGn6unSe/FVl5 1tLNOq5GkKwGcU5xnk3VBEbBgUvvCA==
+;; Received 242 bytes from 156.154.133.200#53(dns2.registrar-servers.com) in 40 ms
+
+test.dorinel.protocoale.club. 300 IN	A	127.0.0.42
+test.dorinel.protocoale.club. 300 IN	A	127.0.42.0
+dorinel.protocoale.club. 300	IN	NS	potato.dfilip.xyz.
+;; Received 148 bytes from 82.78.81.172#53(potato.dfilip.xyz) in 8 ms
+
+
+h. realizați o căutare inversă (PTR) pentru o adresă IP; notați care este numele 
+de domeniu pentru care se realizează cererea și explicați de ce numerele din componența 
+adresei IP sunt în ordine inversă
+
+; <<>> DiG 9.16.1-Ubuntu <<>> -x 172.217.19.11
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8229
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;11.19.217.172.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+11.19.217.172.in-addr.arpa. 4502 IN	PTR	zrh04s08-in-f11.1e100.net.
+11.19.217.172.in-addr.arpa. 4502 IN	PTR	fjr02s08-in-f11.1e100.net.
+
+;; Query time: 52 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Thu Apr 29 13:22:38 EEST 2021
+;; MSG SIZE  rcvd: 124
+
+La cererea pentru un IP al lui google.com, am primit ca raspuns 
+doua nume de domeniu :fjr02s08-in-f11.1e100.net. si zrh04s08-in-f11.1e100.net. 
+
+
+

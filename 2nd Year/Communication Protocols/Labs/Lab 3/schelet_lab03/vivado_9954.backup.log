@@ -1,0 +1,23 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Mar 17 10:00:37 2021
+# Process ID: 9954
+# Current directory: /home/catalin/Desktop/PC/Lab 3/schelet_lab03
+# Command line: vivado
+# Log file: /home/catalin/Desktop/PC/Lab 3/schelet_lab03/vivado.log
+# Journal file: /home/catalin/Desktop/PC/Lab 3/schelet_lab03/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/catalin/Lab1/Lab1.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2020.2/data/ip'.
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+open_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:06 . Memory (MB): peak = 7267.332 ; gain = 28.176 ; free physical = 116 ; free virtual = 3713
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Mar 17 12:40:14 2021...

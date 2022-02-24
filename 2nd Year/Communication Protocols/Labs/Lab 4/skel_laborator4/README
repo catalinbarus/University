@@ -1,0 +1,59 @@
+Student: Barus Catalin-Stefan
+Grupa: 321CD
+
+** Laboratorul 4 - Forwarding **
+
+Pentru acest laborator, am implementat pe rand TODO-urile din cadrul scheletului
+folosindu-ma de functiile deja implementate in fisierele sursa din arhiva si de
+parsarea datelor oferita deja si implementata in main.
+
+* TODO 1 - Best Route *
+
+Pentru acest task, am parcurs intrarile tabelei de rutare si am verificat pentru
+fiecare iteratie daca prefixul intrarii corespunde cu valoarea de SI logic 
+dintre masca si adresa ip a destinatiei. Pentru a obtine cel mai bun drum, nu 
+trebuie doar sa returnam primul match gasit, ci sa gasim matchul cu cea mai
+lunga masca. 
+
+* TODO 2 - ARP Entry *
+
+Pentru functia de la acest task am parcurs tabela ARP si am returnat primul
+match al adresei IP furnizate cu adresa IP din tabela.
+
+* TODO 3 - Verify Checksum *
+
+Pentru calcularea checksum-ului am folosit functia deja implementata in skel.c,
+"ip_checksum", pentru interfata structurii IPV4 si am verificat daca checksum-ul
+este sau nu valid. Daca nu este valid, fac drop la pachetul respectiv, 
+ducandu-ma la urmatoarea iteratie.
+
+* TODO 4 - Verify TTL *
+
+Daca TTL-ul ajunge la o valoare mai mica de 1, nu are sens sa transmit mai 
+departe acel pachet, deci inseamna ca trebuie sa fac drop la pachet.
+
+* TODO 5 - Find best route for current packet *
+
+Folosesc functia de la TODO 1 pentru a gasi ruta cea mai buna pentru pachetul
+curent si o retin intr-un pointer de tipul "struct route_table_entry *". Daca 
+ruta este NULL (nu gasesc un match pentru o ruta), fac drop la pachet.
+
+* TODO 6 - Update TTL and Checksum *
+
+Decrementez la fiecare iteratie ttl-ul si recalculez cu functia "ip_checksum", 
+valoarea potrivita pentru checksum.
+
+* TODO 7 - Find best ARP route and update Ethernet *
+
+Ma folosesc de functia implementata la TODO 2 pentru a gasi intrarea potrivita
+din tabela ARP si o retin intr-un pointer de tipul "struct arp_entry *". Din
+moment ce folosirea Ethernet-ului ne coboara din nou la nivelul legatura de date
+pe stiva OSI, avem nevoie sa updatam adresa destinatie a Ethernet-ului cu noua
+adresa MAC scoasa din tabela ARP. Pentru a gasi interfata potrivita pentru a
+trimite pachetul de date, folosesc functia deja implementata "get_interface_mac"
+pe acea adresa MAC extrasa din tabela ARP.
+
+* TODO 8 - Forward packet *
+
+Folosesc functia deja implementata, "send_packet", pentru a trimite mesajul pe
+interfata potrivita.

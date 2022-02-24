@@ -1,0 +1,28 @@
+Student: Barus Catalin-Stefan
+Grupa: 321CD
+
+** Laboratorul 7 - Protocolul de transport TCP **
+
+Pentru acest laborator, m-am folosit de informatiile furnizate pe OCW, dar si de
+instructiunile din Whiteboard pentru a rezolva toate taskurile.
+
+** Setup **
+
+Am configurat in makefile portul, l-am setat pe 10290, si adresa ip pe 127.0.0.1
+pentru ca fac un transfer de date pe acelasi host.
+
+** Client **
+
+Pentru inceput, initializez socket-ul cu informatiile specifice masinii mele
+(setez portul si adresa) dupa care folosesc functia connect pe socket-ul meu
+pentru a realiza conexiunea cu server-ul. Mai departe, apelez functia
+"run_client" pentru a trimite mesaje pe socket, folsind functia "send". De
+asemenea, folosesc functia "recv" pentru a receptiona un mesaj primit de la
+server.
+
+** Server **
+
+Similar cu implementarea din client, imi initializez un socket de tip TCP cu 
+datele masinii mele, asociez adresa serverului cu socketul creat folosind 
+functia "bind". Mai departe apelez fie functia "run_echo_server", fie functia
+"run_chat_server" folosind in ele implementarea din "receive_and_send".

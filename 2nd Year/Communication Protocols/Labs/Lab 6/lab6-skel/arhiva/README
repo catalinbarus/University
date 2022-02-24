@@ -1,0 +1,33 @@
+Student: Barus Catalin-Stefan
+Grupa: 321CD
+
+** Laboratorul 6 - Socketi UDP **
+
+Pentru acest laborator, m-am folosit de informatiile furnizate pe OCW, dar si de
+instructiunile din Whiteboard pentru a rezolva toate taskurile.
+
+** Setup **
+
+Am configurat in makefile portul, l-am setat pe 12345, si adresa ip pe 127.0.0.1
+pentru ca fac un transfer de date pe acelasi host.
+
+** Client **
+
+Primul pas este de a-mi initializa socket ul si de a completa informatiile din
+structura acestuia cu datele masinii mele (portul si adresa IP), dupa care
+citesc datele dintr-un fisier folosind functia read, similar cu ce am facut in
+laboratorul 2 si trimit, folosind functia sendto datele catre server. De 
+asemenea, ma asigur si ca datele au fost sau nu trimise cu succes, dupa care
+inchid file descriptorul si socket-ul.
+
+** Server **
+
+Pe partea serverului, pasul de initializare a socket-ului este indentic cu cel
+din client, cu exceptia ca acum fac un bind pentru a asocia o adresa soket-ului
+meu. Practic anunt potentialii clienti ca server-ul meu asteapta conexiuni
+(pe portul 12345 in cazul meu). Dupa ce server-ul a interceptat un client,
+datele incep sa se transmita, folosesc functia recvfrom pentru a primi datele
+de la client si ma asigur ca acestea au fost sau nu receptionate cum trebuie.
+In final, dupa ce s-au primit toate datele inchid socket-ul si fisierul
+asociat server-ului.
+

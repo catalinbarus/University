@@ -1,0 +1,47 @@
+Student: Barus Catalin-Stefan
+Grupa: 321CD
+
+** Laboratorul 3 - Protocol cu Fereastra glisanta si Suma de control **
+
+
+Pentru implemntarea acestui protocol am pornit de la logica din spatele
+protocolului STOP and WAIT si de la ce am implementat in laboratorul anterior.
+
+** Calcularea dimensiunii ferestrei glisante **
+
+Pentru inceput, am calculat valoarea sliding window-ului meu, prin impariterea
+BDP-ului (Bandwidth Delay Product) la MSGSIZE care e setat in lib.h la 1400.
+Prin aproximari, am obtinut dimensiunea ferestrei de 8 cadre.
+
+** SENDER **
+
+In fisierul send.c, pornesc implementarea prin trimiterea a sizeof(Window) (adica
+8 la mine) cadre. Mai departe, voi trimite separat pentru COUNT - sizeof(Window)
+cadre si totodata, voi astepta sa primesc mesajul ACK (sau NACK) de la receiver.
+Practic, acest mecanism va simula mecanismul unui sliding window de dimensiune
+8, presupunand ca ordinea in care cadrele au fost trimise corespunde cu ordinea
+in care sunt primite. La final, ma asigur sa primesc inca sizeof(Windows) mesaje
+de ACK sau NACK pentru a putea termina toata functionalitatea pe care o are
+send.c. De asemena, pentru fiecare cadru trimis calculez si o suma de control 
+pe baza operatorului XOR pentru a ma asigura ca receiverul primeste datele fara
+eventuale erori/alteratii.
+
+** RECEIVER **
+
+In fisierul recv.c, procedeul de primire a cadrelor seamana destul de mult cu 
+acela al unui protocol de tip STOP and WAIT, marea diferenta fiind recalcularea
+sumei de control pentru fiecare cadru primit pentru a ne asigura ca datele au
+fost transmise corect.
+
+** Bugs & Fixes **
+
+Un mic bug pe care l-am intampinat in prima faza atunci cand voiam sa fac
+suma de control era faptul ca dupa ce am adaugat campul checksum in structura
+msg, am observat ca datele primite in recv.c erau diferite fata de cele din
+send.c pentru campul checksum. Problema era ca eu initializasem campul checksum
+dupa stringul payload din structura, iar, ordinea parametrilor intr-o structura
+conteaza foarte mult. Compilatorul nu poate calcula exact cata memorie va 
+consuma stringul de payload, el fiind numit un "flexible number". Din aceasta
+cauza compilatorul nu poate sa isi dea seama unde se afla campul checksum in
+memorie, el fiind declarat dupa payload. Daca mutam declararea lui checksum
+inainte de payload, atunci datele sunt trasnmise cum trebuie. 

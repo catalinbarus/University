@@ -1,0 +1,24 @@
+Studenti: Barus Catalin-Stefan
+		  Brebu Costin-Bogdan
+
+Grupa: 321CD
+
+** Task 1 **
+
+Pentru functia "get_ip", initializez campurile pentru structura de filtre si 
+obtin adresele. In functia "getaddrinfo" obtin adresele pe un format https.
+Se parcurg apoi rezultatele printr-un for si afisam 
+informatiile (adresa si portul) pentru fiecare ip, in functie de tipul lui
+(v4 sau v6).
+
+Pentru functia "get_name" primesc o adresa IP in loc de numele hostului si 
+afisez numele hostului si serviciul asociat adresei primite, care este returnat 
+prin functia getnameinfo. Pentru a putea face apelul functiei getnameinfo in mod 
+corect, completeaz campurile de familie si port ale variabilei addr in mod 
+corespunzator.
+
+** Task 2 **
+
+In fisierul dig_requests se gasesc toate comenzile ce implica dig, cerute la
+task 2, precum si ce afiseaza aceste comenzi. Rezultatul obtinut in Wireshark
+se gaseste in screenshot-ul Wireshark_cerereDNS.png .

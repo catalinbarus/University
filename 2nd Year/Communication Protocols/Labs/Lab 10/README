@@ -1,0 +1,28 @@
+Barus Catalin-Stefan, 321CD
+Brebu Costin-Bogdan, 321CD
+
+
+Am inceput implementarea laboratorului cu partea de requests, unde am completat
+in functiile date TODO-urile, pentru a se putea construi cererea catre server,
+adica host-ul si eventualele headere sau cookie-uri, in functie de tipul de 
+metoda a cererii (GET sau POST).
+
+In client, am implementat fiecare exercitiu pe rand, in ordinea cerintelor de pe
+ocw. Cererile pentru toate exercitiile s-au facut pe adresa 34.118.48.238 si portul
+8080. Implementarile pentru exercitii functioneaza pe acelasi principiu. 
+Initializez conexiunea cu serverul folosind functia open_connection. Apoi 
+imi formez cererea catre server cu functia compute_get_request sau compute_post_request
+completata anterior, in functie de ce tip de mesaj trebuie trimis GET sau POST).
+Inainte de a-l trimite il afisez. Retin mesajul primit de la server si il afisez.
+In final inchid conexiunea. 
+
+Observatie : Intrucat la exercitiul 4 am harcodat cookie-ul , s-ar putea ca la rulare
+codul sa nu functioneze, intrucat poate diferi. Pentru rezolvare, se ia cu paste
+ce se gaseste la campul Set-Cookie de la exercitiul anterior si se inlocuieste 
+cu acea valoare stringul copiat in cookies[0] din functia strcpy.   
+
+La sfarsitul programului, se dezaloca memoria pentru variabilele folosite in cod.
+
+Pentru a verifica corectitudinea algoritmului, se poate compara continutul afisat 
+de rularea clientului si cel de telnet pentru fiecare comanda in parte, folosind
+adresa 34.118.48.238 si portul 8080.
