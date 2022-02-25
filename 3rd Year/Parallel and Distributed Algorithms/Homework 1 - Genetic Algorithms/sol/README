@@ -1,0 +1,66 @@
+336 CB, Barus Catalin Stefan
+
+**** Tema 1 APD - Algoritmi Genetici ****
+
+**** Detalii paralelizare ****
+
+** In cadrul acestei teme, pentru a scala problema rucsacului 0-1 adaptata la
+algoritmul genetic descris in enunt, am incercat sa paralelizez fiecare for sau
+iteratie care putea sa fie eficientizata folosind metoda descrisa in laborator
+de a asigna fiecarui thread cate o bucata dintr-un array. In linii mari, fiecare
+for care folosea lista de indivizi a fost paralelizat utilizand pthreads si
+formulele de asignare a unui subvector, folosind un index de start si end. 
+
+** Mai mult, probabil cea mai importanta modificare adusa implementarii 
+secventiale, a fost sortarea indivizilor dupa functia de fitness. Qsort-ul in 
+functie de cmpfunc a fost inlocuit cu un Merge Sort paralelizat. Practic, in 
+functie de numarul de threaduri disponibile, impartim array-ul nostru in atatea 
+subarray-uri, pe care aplicam merge sort-ul clasic. Dupa ce fiecare bucatica a
+fost sorata de un thread, ramane doar sa unim toate acele subarray-uri pentru
+a obtine vectorul final, sortat dupa fitness.
+
+** O baza importanta pentru implementarea sortarii paralelizate, ce reduce destul
+de mult timpii de rulare, este algoritmul de Merge Sort multithreaded, oferit 
+de cei de la Geeks for Geeks, disponibil aici: 
+* https://www.geeksforgeeks.org/merge-sort-using-multi-threading/ *
+
+** Pentru a functiona cum trebuie si a sorta corect indivizii dintr-o generatie,
+algoritmul de merge a fost modificat pentru a compara pe doua criterii, folosind
+functia cmpfunc deja folosita pe post de comparator in functia de qsort din
+implementarea secventiala oferita in arhiva. Practic daca se intalneste cazul
+cand doi indivizi au aceeasi valoare de fitness, algoritmul de merge stie sa
+sorteze dupa numarul de "obiecte" pe care fiecare individ le are in rucsac.
+
+**** Detalii implementare efectiva ****
+
+Pentru a putea facilita de un algoritm multithreaded si biblioteca Pthread, 
+functia ce va fi apelata de fiecare thread in pthread create, va fi functia
+run_genetic_algorithm, transformata acum pentru a primi un singur argument, ci
+anume o structura in care am introdus argumentele initiale ale functiei, plus
+alte variabile utile in paralelizare, precum numarul de threaduri, threadu-ul
+curent, o bariera si un mutex. Dupa fiecare for sau iteratie paralelizata, 
+folosind formulele de start si end din laborator, pun o bariera care asteapta 
+toate thread-urile pentru a-si calcula bucata lor din array. Mai exact, 
+urmatoarele iteratii au fost paralelizate:
+ - for-ul de initializare de la inceputul functiei
+ - functia de compute fitness
+ - toate for-urile unde a fost posibil sa paraleliz in functie de de un procent
+   din generatia curenta: cel pentru selectia elitei, si cele pentru cele doua
+   feluri de mutatie au fost paralelizate
+ - in loc de qsort, apelez algoritmul de merge sort modificat pe doua criterii,
+   dupa care pun din nou o bariera pentru a astepta ca toate threadurile sa
+   sorteze partea lor de array
+ - mai departe, ma asigur ca unesc bucatile sortate verificand cate threaduri 
+   am in total, dupa care mai pun o bariera ca sa astept din nou sa se uneasca 
+   toate partile.
+ - pentru a ma asigura ca indexii de start si end se calculeaza corect, pentru
+   thread-ul curent, blochez computarea indexilor intr-un mutex
+
+
+
+
+
+
+
+
+

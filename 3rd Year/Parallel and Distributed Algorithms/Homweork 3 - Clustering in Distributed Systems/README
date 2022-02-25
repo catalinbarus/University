@@ -1,0 +1,38 @@
+336 CB, Barus Catalin Stefan
+
+**** Tema 3 APD -  Calcule colaborative in sisteme distribuite ****
+
+**** Detalii implementare efectiva ****
+
+** Pentru inceput, dupa parsarea datelor de intrare, fiecare coordonator de cluster
+isi va informa workerii despre faptul ca el este coordonatorul si ca doar
+de la el pot primi mesaje. In procesul worker, aceasta prima transmisie se face
+de la sursa MPI_ANY_SOURCE, urmand ca dupa ce isi stie coordonatorul sa primeasca
+mesaje doar de la el. Verificarea worker-ilor se face in procesele coordonator,
+deci nu se poate ca un worker sa primeasca mesaje de la altcineva in afara de 
+coordonatorului lui.
+
+** Etapa 1 **
+
+** Mai departe vom construi topologia completa. Pentru claritate si usurare
+a task-urilor efectuate de procesul 0, am decis sa construiesc topologia completa
+in procesul 1. Incep prin a trimite din procesele 0 si 2 numarul de workeri si
+workerii efectivi ai clusterlelor urmand ca in procesul 1 sa combin rezultatele.
+Odata ce procesul 1 cunoaste topologia completa o afisez si o trimit in acelasi
+timp catre workerii lui si catre procesele 0 si 2. Dupa ce procesele 0 si 2 isi
+primesc topologia si ele o vor trimite la randul lor catre procesele lor de tip
+worker, urmand ca odata primita, topologia sa fie afisata de fiecare proces.
+
+** Etapa 2 **
+
+** Pentru inceput, procesul 0 va citi din argumentele programului dimensiunea
+array-ului dupa care va genera un vector cu valori de la 0 la size-1. Pentru
+o impartire eficienta am decis sa impart array-ul generat in cluster bucati, 
+adica pentru exemplul din tema noastra in 3 bucati. Dupa ce procesul 0 a facut
+aceasta impartire, urmeaza ca el sa informeze restul coordonatorilor care este
+bucata din vector pe care ei o vor procesa. Dupa ce fiecare coordonator stie
+ce subarray va procesa, va imparti iar cat de echilibrat se poate acea bucatica
+pentru fiecare worker din clusterul lui. Dupa ce o bucata a fost procesata ea
+este trimisa catre coordonator urmand ca procesele 1 si 2, odata ce isi au toata
+partea procesata sa o trimita catre procesul 0. Dupa ce procesul 0 are toate
+partile, ramane doar ca acesta sa le afiseze in ordinea corecta.

@@ -1,0 +1,76 @@
+336 CB, Barus Catalin Stefan
+
+**** Tema 2 APD - Procesarea de documente folosind paradigma Map-Reduce ****
+
+**** Detalii paralelizare ****
+
+** Pentru rezolvarea taskurilor de Map si Reduce conform logicii din enuntul
+temei, am folosit o abordare clasica de Java Threads, in care am considerat
+main-ul ca fiind thread-ul coordonator pentru toate task-urile, urmand sa iau 
+pe rand atatea thread-uri cate am workeri pentru a rezolva task-urile efective 
+de Map si Reduce. 
+
+** Fiecare worker va primi taskurile de Map sau Reduce dintr-o lista impartita
+cat de egal se poate dupa formulele de impartire in paralel ale unui array,
+descrise inca din laboratorul 1.
+
+** Din punt de vedere al paralelizarii fiecare thread va stii sa isi prelucreze
+doar task-urile destinate lui, iar pentru stocarea rezultatelor obtinute in
+urma proceselor de Map sau Reduce voi folosi alta lista, in care pentru a ma 
+asigura ca fiecare worker isi "depune" munca, folosesc un semafor pe post de
+mutex pentru ca fiecare thread sa isi puna toate rezultatele in lista de 
+rezultate.
+
+**** Detalii implementare efectiva ****
+
+** Pentru inceput, stochez informatiile privind numarul total de workeri si de
+unde pot prelucra fisierele si de asemenea unde voi scrie rezultatele finale.
+Dupa ce am citit ce fisiere vor fi prelucrate, pentru fiecare dintre ele voi 
+stoca si dimensiunea lor totala. Acest lucru va fi util mai tarziu cand va trebui
+sa impart documentele in task-uri de o anumita dimensiune. 
+
+** Dupa aceea, incep sa construiesc task-urile initiale, unde stiu ca fiecare
+task va incepe de la un anumit offset si va avea o dimensiune asignata de
+fisierul de input. Pentru aceasta incep sa citesc din fisierul curent litera
+cu litera pana cand ating size-ul maxim impus pentru un fragment. Repet acest
+proces, si ma asigur sa pun offset-ul bun pentru restul fisierelor.
+   O prima problema ce apare in acest caz, va fi inconsistenta cuvintelor, nu 
+stim sigur ca fragmentele noastre contin cuvinte intregi. Pentru a rezolva acest
+lucru am decis sa modific offset-ul si dimensiunea fragmentului pentru a acomoda
+toate cuvintele intregi intr-un singur fragment. Astfel, daca in lista de task-uri
+gasesc doua dintre ele care apartin aceluiasi document, verfic daca la granita
+dintre ele se afla un cuvant. Pentru acest lucru voi citi din task-ul din stanga
+(task-urile trebuie sa fie si vecine) de doua ori si voi muta cursorul prima oara
+inainte de ultima lui litera si a doua oara dupa ultima sa litera. Daca in
+continuarea acestei ultime litere se mai afla alte litere, inseamna ca in 
+fragmenul din dreapta se continua un cuvant si fac prelucrarile necesare pentru
+a-l include in primul task, in timp ce al doilea task isi va pierde din dimensiune
+iar offset-ul lui va creste in raport cu fisierul. De asemenea daca unul din 
+task-uri se intampla sa fie acoperit toatal de altul (devine gol), ma asigur
+sa-l elimin din lista de task-uri.
+
+** Dupa aceasta procesare, incep sa aplic logica de map pe task-uri, impartind
+lista de task-uri cat de egal se poate la nrWorkeri thread-uri. Fiecare worker
+va primi anumite task-uri din lista (un task ajunge doar la un singur worker).
+Dupa ce un worker a primit un task, el va incepe sa citeasca din fisierul
+corespunzator, incepand de la offset-ul furnizat de task atatea caractere
+cate sunt in task. Citierea se va face litera cu litera, iar cat timp acele
+caractere sunt litere contorizam rezultatul. In momentul cand dam de un separator
+stim ca acel cuvant s-a terminat, moment in care vom stoca intr-o lista cuvantul
+de lungime maxima si intr-un map vom stoca numarul de litere al cuvantului pe 
+post de cheie, iar pe post de valoare numaru de aparitii corespunzator. Pentru
+usurinta, implementarea listei si a map-ului se va realiza intr-o lista in care
+stochez obiecte ce contin atat numele fisierului curent, cat si lista cuvintelor
+de lungime maxima si map-ul cu numarul de aparitii. Aceasta lista de rezultate
+este initializata static pentru o accesare usoara iar la finalul fiecarui task
+de map vom da append la rezultate in aceasta lista.
+
+** Pe baza acestor reultate vom contrui task-urile preliminare pentru etapa de
+Reduce. Logica este similara, un task este preluat de worker, dupa care parucrg
+fiecare map pentru un anumit fisier si numar cate cuvinte are acel document,
+dar si suma bazata pe index-ul lungimii din sirul lui fibonacci pentru a putea
+calcula rangul. Analog, parcurg listele de maxime pentru a determina care cuvinte
+sunt de fapt de lungime maxima in intregul document. Precum la etapa de map,
+rezultatele vor fi stocate intr-o lista de reultate finale care va fi sortata
+de coorodnator descrescator in functie dee rang. Dupa care, pe baza acestei liste,
+voi scrie intr-un fisier rezultatele finale.
