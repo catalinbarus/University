@@ -1,0 +1,56 @@
+Starting test 1
+Finished test 1
+Test 1:		PASSED
+Starting test 2
+Finished test 2
+Test 2:		PASSED
+Starting test 3
+Finished test 3
+Test 3:		PASSED
+Starting test 4
+Finished test 4
+Test 4:		PASSED
+Starting test 5
+Finished test 5
+Test 5:		PASSED
+Starting test 6
+Finished test 6
+Test 6:		PASSED
+Starting test 7
+Finished test 7
+Test 7:		PASSED
+Starting test 8
+Finished test 8
+Test 8:		PASSED
+Starting test 9
+Finished test 9
+Test 9:		PASSED
+Starting test 10
+Finished test 10
+Test 10:		PASSED
+
+Run pylint
+
+************* Module consumer
+tema/consumer.py:43:4: C0116: Missing function or method docstring (missing-function-docstring)
+tema/consumer.py:43:4: R0201: Method could be a function (no-self-use)
+************* Module marketplace
+tema/marketplace.py:157:8: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+tema/marketplace.py:172:8: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+tema/marketplace.py:189:12: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+tema/marketplace.py:193:8: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+tema/marketplace.py:210:8: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+tema/marketplace.py:226:8: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+tema/marketplace.py:230:12: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+tema/marketplace.py:249:8: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+tema/marketplace.py:262:8: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+tema/marketplace.py:252:4: R1711: Useless return at end of function or method (useless-return)
+tema/marketplace.py:283:8: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+tema/marketplace.py:299:8: W1202: Use % formatting in logging functions and pass the % parameters as arguments (logging-format-interpolation)
+************* Module producer
+tema/producer.py:43:4: C0116: Missing function or method docstring (missing-function-docstring)
+tema/producer.py:43:4: R0201: Method could be a function (no-self-use)
+
+------------------------------------------------------------------
+Your code has been rated at 9.16/10 (previous run: 9.16/10, +0.00)
+

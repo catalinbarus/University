@@ -1,0 +1,128 @@
+*** 336 CB - Barus Catalin Stefan ***
+
+** Tema 1 ASC - Marketplace **
+
+** Detalii implementare **
+
+In construirea solutiei efectiva a marketplace-ului am folosit o implementare 
+clasica a problemei Multiple Producer Multiple Consumer ce dispune de mai multe
+semafoare si lock-uri. Elementele de sincronizare apar in toate clasele folosite
+in rezolvare temei (Marketplace, Consumer, Producer), cu o preponderenta mai
+mare in ultimele doua. Am incercat sa omit toate elementele de sincronizare
+din Marketplace, dar daca fac asta am observat ca pot sa apara anumite probleme.
+
+Setul de unit testing si construirea unui fisier de logging sunt implentate
+in totalitate respectand critetriile oferite in cerinta. Pentru unit testing,
+am decis sa fac cate un test general pentru fiecare metoda din clasa Marketplace,
+iar pentru metodele ce intorc un boolean am construit cate un test pentru
+fiecare caz.
+
+Pentru intelegerea mai clara a ce presupune un unit test si implementarea
+unui logger m-am folosit de urmatoarele resurse:
+
+- Unit testing: https://www.youtube.com/watch?v=6tNS--WetLI&t=593s
+- Logging:
+	- https://www.youtube.com/watch?v=jxmzY9soFXg
+	- https://stackoverflow.com/questions/40088496/how-to-use-pythons-rotatingfilehandler
+	- https://stackoverflow.com/questions/6321160/how-to-set-timestamps-on-gmt-utc-on-python-logging
+	- https://pyquestions.com/how-to-set-timestamps-on-gmt-utc-on-python-logging
+
+** Implementarea efectiva **
+
+Asa cum am mentionat si mai sus, logica de la care am pornit a fost aceea a problemei
+clasice de producatori si consumatori, extinsa pe mai multi indivizi. Ca baza,
+am pornit de la ce stiam deja despre problema asta de la laboratorul 5 de APD de
+pe semestrul trecut, plus ce am invatat si acum la laboratorul de ASC.
+
+Pentru simplitate, voi imparti explicatiile flow-ului in cod in fiecare dintre
+clasele ce au ajutat la rezolvarea problemei:
+
+Producer.py:
+
+- In acesta clasa ruleaza thread-urile destinate producatorilor. Pentru sincronizare,
+am avut nevoie doar de un semafor binar pentru a ma asigura ca operatiile de
+incrementare/decrementare se executa corect
+
+- Rulez intr-un loop infinit thread-urile, garantand astfel ca producatorii produc
+pana cand consumatorii isi termina cumparaturile (ei inchid thread-urile)
+
+- Pentru fiecare produs destinat sa fie creat de acel producator, iterez
+conform informatiilor oferite de fisierele json incep sa public obiectele.
+
+- Pentru fiecare publish verific daca a dat sau nu fail pentru a da sleep
+corespunzator
+
+- Operatia de inregistrare a unui nou prducator este protejata de semafor pentru
+a preveni cazul cand doi producatori au acelasi id
+
+Consumer.py:
+
+- Aici ruleaza thread-urile destinate consumatorilor. La fel ca la produceri,
+folosesc un semafor binar pentru sincronizare
+
+- Iterez prin informatiile stocate in json-uri si incep sa imi construiesc
+carturile
+
+- Fiecare consumator va itera prin fiecare obiect in functie de cantitatea
+specificata si il va adauga/scoate din cart 
+
+- Pentru fiecare operatie de add/remove verific daca acea operatie a dat sau nu
+fail; daca a dat fail dau sleep cu timpul de asteptare specificat in fisierul json
+
+- La final, fiecare consumer va da place order pe comanda lui
+
+Marketplace.py:
+
+- Implementarea functiilor din marketplace este completa
+
+- In implemntare am folosit mai multe liste si dictionare pentru usurarea
+calculelor pe care le-am definit in __init__
+
+- Functia register_producer:
+	- id-ul unui producer este definit printr-un contor care porneste de la 0
+	- operatia este sincronizata in producer.py
+	- exista o lista de liste, fiecare cu produsele unui anumit producator, iar
+	  pe baza ei imi dau seama daca acel producator si-a depasit sau nu queue size-ul
+
+- Functia publish:
+	- Pentru fiecare producator in parte verific daca mai are loc sa posteze un
+	  nou produs
+	- Daca mai are loc, atunci adaug acel produs in coada producatorului
+	- De asemenea, mai adaug produsul si intr-un dictionar in care tin evidenta
+	  fiecarui produs, de cine a fost facut si il mai adaug si intr-o lista
+	  "general purpose" sa vad toate produsele care se afla in marketplace la un
+	  anumit timp
+	- Daca nu mai are loc, atunci functia returneaza False, semnaland ca operatia
+	  de publish a dat fail
+
+- Functia new_cart:
+	- id-ul unui cart este generat pe acelasi principu ca la un producer, printr-un
+	  contor
+	- Pentru fiecare cart stochez intr-un dictionar id-ul lui si ii ofer o lista
+	  ce va servi drept lista de produse pentru acel cart
+
+- Functia add_to_cart:
+	- Verific daca produsul pe care il vrea un consumer poate fi adaugat in cart
+	- Daca nu exista, functia intorace False, anuntand astfel ca add da fail
+	- Daca exista, il vom sterge din lista de producatori si cea generala,
+	  el fiind acum rezervat
+	- Mai exact, il vom adauga in dictionarul de cart-uri, pe intrarea care da
+	  match id-ul dat ca parametru functiei
+
+- Functia remove_from_cart:
+	- Logica este cumva inversa functiei de mai sus
+	- Practic, readaug produsul in lista producatorului si din lista generala,
+	  cu toate produsele din marketplace
+	- Sterg produsul din cart
+
+- Functia place_order:
+	- Pentru cart id-ul oferit, caut intrarea in dictionarul de carturi si retin
+	  lista
+	- Dupa ce retin lista de produse, sterg intrarea din dictionar si afisez
+	  fiecare produs ce a fost cumarat de un consumer ce se afla in carts
+
+
+Pe partea de logging, generez logari pentru intrarile si iesirile din metodele
+din marketplace.py in fisiere cu un rotating file handler de 10 fisiere a cate
+10000 bytes fiecare.
+

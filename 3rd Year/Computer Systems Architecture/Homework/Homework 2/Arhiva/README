@@ -1,0 +1,140 @@
+* 336 CB - Barus Catalin-Stefan *
+
+** Tema 2 ASC **
+
+* Detalii implementare *
+
+Intreaga cerinta a temei a fost implementata, mai putin bonusul de sub 10 secunde la
+varianta opt_m pentru cazul cand N = 1200.
+
+In implementarile pentru varintele neopt si opt_m am tinut cont de faptul ca matricea
+A este superior triunghiulara (voi detalia la fiecare implementare in parte cum m-am
+folosit de aceasta proprietate).
+
+1) Varianta neopt
+
+Aceasta este cea mai simpla varianta de inmultire a matricelor cu o implementare
+foarte similara cu cea pe care am invatat-o la Laboratorul 5 de ASC. Imi retin
+intr-o matrice aditionala C rezultatul operatiei B x A dupa care intr-o matrice D,
+imi retin rezultatul obtinut anterior inmultit cu transpusa matricei lui A. La final,
+tot in D adaug la fiecare element rezultatul inmultirii matricelor B transpus si B.
+
+Pentru a beneficia de proprietatea ca A este matrice superior triunghiulara, in
+primul set de for-uri cand calculez B x A, for-ul de la K va merge pana la j, practic
+pentru fiecare iteratie eu voi inmulti si aduna doar elementele care s-ar duce de la 
+0 pana la diagonala principala pe fiecare coloana.
+
+Mai mult, am modificat si al doilea set de for-uri, tot in for-ul care pleaca de la
+k. In acest caz trebuie sa inmultim rezultatul obtinut anterior cu A transpus, deci cu
+o matrice inferior triunghiulara. In acest caz k trebuie sa plece de la j, pentru a ne
+asigura ca pe fiecare linie din A doar elementele incepand de la diagonala principala
+vor fi luate in calcul. 
+
+2) Varianta BLAS
+
+Aceasta varianta foloseste functii din biblioteca cblas.h pentru inmultirile efective
+dintre matrice. Pentru inmultirile B x A si B x A x A transpus ma folosesc de faptul 
+ca A este superior triunghiulara si utilizez functia cblas_dtrmm ce tine cont ca una
+dintre matrice este triunghiulara. Iar pentru operatia B transpus x B, tinand cont ca 
+B nu este triunghiulara este suficient sa folosim functia cblas_dgemm pentru inmultire.
+
+3) Varianta opt_m
+
+Pentru aceasta varianta am pornit de la versiunea neopt ca logica si pentru fiecare set
+de for-uri in parte m-am folosit de niste registre pentru a optimiza problema. Capetele
+de iteratie in for sunt analog cu cele de la varianta neopt pentru a asigura ca se 
+pastreaza proprietatea de triunghiularitate, iar pe langa acest aspect am mai introdus
+urmatoarele modificari:
+
+* La primul set de for-uri unde inmultesc matricele B si A:
+    - pentru fiecare iteratie din primul for retin intr-un registru a i-a linie
+      din matricea B si C (unde voi pune rezultatul)
+    - pentru fiecare iteratie din al doilea for retin a j-a coloana din A 
+    - in al treilea for la fiecare pas inmultesc cate un element de pe fiecare linie
+      din pointer-ul liniei i din B cu cate un element de pe coloana j din pointer-ul
+      coloana din A
+
+* La al doilea set de for-uri unde inmultesc matricea rezultata anterior cu A transpus:
+    - pentru fiecare iteratie din primul for retin intr-un registru a i-a linie din
+      matricea C si D (unde voi pune rezultatul)
+    - pentru fiecare iteratie din al doilea for retin intr-un registru locatia in memorie
+      a matricei A unde se afla elementul de la linia j si coloana j pentru ca A transpus 
+      este inferior triunghiulara si din acel punct ne intereseaza sa inmultim, iar in 
+      pointer-ul liniei din matricea C adunam valoarea cu un j ca sa sarim peste elementele
+      din linie ce s-ar inmulti cu un 0 din A transpus.
+
+* La al treilea set de for-uri unde la rezultat mai adun B transpus ori B:
+    - pentru fiecare iteratie din primul for retin intr-un registru a i-a linie din D (unde 
+      voi pune rezultatul) si a i-a coloana din B (ca sa iterez prin ca si cum as avea B transpus)
+    - pentru fiecare iteratie din al doilea for, retin intr-un registru a j-a coloana din B
+    - Pentru acest set de for-uri nu am avut ce optimizari sa aduc, B nefiind triunghiulara, deci 
+      va trebui sa trec prin fiecare element in parte
+
+* Memory Leaks *
+
+Fisierele .memory sunt prezente in arhiva, pentru fiecare implementare nu exista memory leaks.
+
+* Cachegrind *
+
+In urma rularii valgrind pe modul de cachegrind, putem observa cum numarul de missuri intre 
+neopt si opt_m este aproape identic, in timp ce la blas este mai mare. In acelasi timp numarul de
+I refs si D refs este cel mai mare la varianta neopt, urmata de opt, unde modifcarile aduse de registrii
+fac posibila aceasta imbunatatire. In continuare observam un numar mai mic rezultat la varianta blas, 
+aceasta fiind totodata si cea mai buna implementare ca timp.
+
+Toate detaliile se pot observa in fisierele .cache incluse in arhiva.
+
+* Grafice *
+
+Pentru analiza performantelor celor 3 variante de implementare am decis sa fac un singur grafic pe care se 
+pot vedea clar rezultatele produse de algoritmi. Graficul a fost realizat in MATLAB, iar codul si graficul sunt 
+incluse in arhiva.
+
+Pentru testare am construit un fisier cu mai multe teste pe valori ale dimensiunii matricei intre 400 si 1200.
+
+In urma testarii am obtinut urmatoarele reultate:
+
+Pentru neopt:
+
+Run=./tema2_neopt: N=400: Time=1.160794
+Run=./tema2_neopt: N=500: Time=2.280208
+Run=./tema2_neopt: N=600: Time=4.201136
+Run=./tema2_neopt: N=700: Time=6.250985
+Run=./tema2_neopt: N=800: Time=10.290288
+Run=./tema2_neopt: N=900: Time=13.154470
+Run=./tema2_neopt: N=1000: Time=17.736488
+Run=./tema2_neopt: N=1100: Time=23.799044
+Run=./tema2_neopt: N=1200: Time=32.714115
+
+Pentru blas:
+
+Run=./tema2_blas: N=400: Time=0.095167
+Run=./tema2_blas: N=500: Time=0.076895
+Run=./tema2_blas: N=600: Time=0.126840
+Run=./tema2_blas: N=700: Time=0.193361
+Run=./tema2_blas: N=800: Time=0.279967
+Run=./tema2_blas: N=900: Time=0.390163
+Run=./tema2_blas: N=1000: Time=0.546965
+Run=./tema2_blas: N=1100: Time=0.717561
+Run=./tema2_blas: N=1200: Time=0.916927
+
+Pentru opt_m:
+
+Run=./tema2_opt_m: N=400: Time=0.359455
+Run=./tema2_opt_m: N=500: Time=0.712957
+Run=./tema2_opt_m: N=600: Time=1.212313
+Run=./tema2_opt_m: N=700: Time=1.870186
+Run=./tema2_opt_m: N=800: Time=4.503133
+Run=./tema2_opt_m: N=900: Time=4.332955
+Run=./tema2_opt_m: N=1000: Time=5.191469
+Run=./tema2_opt_m: N=1100: Time=9.755822
+Run=./tema2_opt_m: N=1200: Time=12.072292
+
+Aceleasi rezultate ca mai sus au fost folosite si in construirea graficului.
+
+
+Aceste rezultate ne arata cum varianta blas este de departe cea mai eficienta. Pentru N = 1200 se
+observa o diferenta de 0.91 secunde fata de 32 pe varianta neoptimizata. Nici macar varianta 
+optimizata cu registrii cu un timp de 12 secunde nu se apropie de versiunea blas. Mai putem
+observa cum varianta optimizata cu registrii este totusi o varianta extrem de buna fata de cea
+neopt, timpul find mai mic de aproape 3 ori. 
