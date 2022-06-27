@@ -1,0 +1,15 @@
+==19441== Memcheck, a memory error detector
+==19441== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19441== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==19441== Command: _test/bin/test_perror_fork ./_test/work/test_43
+==19441== Parent PID: 19436
+==19441== 
+==19441== 
+==19441== HEAP SUMMARY:
+==19441==     in use at exit: 0 bytes in 0 blocks
+==19441==   total heap usage: 4 allocs, 4 frees, 5,712 bytes allocated
+==19441== 
+==19441== All heap blocks were freed -- no leaks are possible
+==19441== 
+==19441== For lists of detected and suppressed errors, rerun with: -s
+==19441== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

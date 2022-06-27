@@ -1,0 +1,58 @@
+*** 336CB Barus Catalin-Stefan ***
+
+** Tema 3 SO - Loader de Executabile **
+
+** Informatii preliminare **
+
+Intreaga cerinta a temei a fost implmentata, pentru simplitate am decis sa stochez
+in campul data al structurii so_seg_t o structura segment_data_t ce va retine
+informatii utile despre segment in campurile:
+
+page_size = dimensiunea unei pagini
+mapped = va retine adresa paginii mapate, initial valoarea este -1 
+
+** Detalii de implementare **
+
+Asa cum am mentionat si mai sus, ca functionalitati "extra" am adaugat structura
+"so_seg_t", dar am mai adaugat si un file descriptor declarat static de care ma
+voi folosi pentru deschiderea fisierului executabil si o strcutura sigaction
+pentru handler-ul precedent (cel folosit pana la un nou apel al functiei
+so_init_loader).
+
+Pe langa functiile so_init_loader si so_execute, m-am mai folosit si de functia
+pfhandler, pentru implementarea rutinei semnalului SIGSEGV. Functia pfhandler va
+apela si ea la randul ei functiile page_map si find_segment pentru implementarea
+maparii unei pagini, respectiv cautarea unui segment.
+
+** Implementarea efectiva **
+
+* Functia so_init_loader *
+
+Va initializa o noua functie pentru a fi o rutina de tratare a semnalului SIGSEGV.
+
+* Functia so_execute *
+
+Aceasta functie este responsabila de inceperea executiei programului. La inceput
+deschid fisierul dat ca input si imi aloc structura segment_data_t in care retin
+pentru fiecare segment dimensiunea paginii si un camp in care verific daca pagina
+curenta a fost sau nu mapata
+
+* Functia pfhandler *
+
+Pentru inceput verific daca semnalul dat ca parametru este sau nu SIGSEGV, daca
+este incep sa caut adresa segmentului folosind functia find_segment. Acesta
+functie imi intorace indexul corespunzator din structura exec daca am gasit aceeasi 
+adresa. Daca am gasit adresa intr-un segment, verific daca pagina curenta a fost
+sau nu mapata, daca a fost doar apelam handler-ul precedent, altfel ma folosesc
+de functia page_map pentru a implementa logica de mapare. La final, retin informatiile
+despre pagina (ca a fost mapata).
+
+Daca sunt in afara adreselor cunoscute doar apelez handler-ul precedent.
+
+* Functia page_map *
+
+Inainte de a apela mmap verific daca file size ul este mai mare decat adresa paginii.
+Daca este, atunci trebuie sa scriem datele in pagina si apelam mmap cu flagurile
+PRIVATE SI FIXED pe file descriptorul si offset-ul corect. Daca file size ul este
+mai mic, vom face mmap cu aceleasi flaguri la care il mai adaugam pe cel ANONYMOUS
+pentru ca pagina este in afara zonei de memorie a fisierului.

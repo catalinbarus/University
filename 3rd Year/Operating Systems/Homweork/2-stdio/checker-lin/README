@@ -1,0 +1,129 @@
+*** 336CB Barus Catalin-Stefan ***
+
+** Tema 2 SO - Bibliotecă stdio **
+
+** Informatii preliminare **
+
+Intreaga cerinta a temei a fost implmentata si nu au existat probleme de 
+foarte mari in rezolvarea problemelor (cu exceptia erorilor de memorie ce au
+necesitat mai mult timp)
+
+** Detalii de implementare **
+
+Pentru rezolvarea temei, am implementat pe rand toate cerintele in ordinea din
+tema, cu exceptia functilor care depindeau de alte functii din tema (de exemplu
+cum in fclose in fputc/fgetc avem nevoie si de) sau pentru alte functii am impartit
+functionalitate in mai multe functii pe care le voi detalia mai tarziu.
+
+De asemenea, pentru usurinta am implementat structura SO_FILE similar cu
+cea de FILE la care am adaugat mai multe campuri ajutatoare, astfel:
+
+fd = va fi file desciptorul folosit de fisierul curent
+
+buffer = folosit pentru functionalitatea de buffering
+
+mode = un string folosit ca sa stiu ultimul mod in care a fost accesat fisierul 
+	   meu, fie read, fie write sau o stare default, non read sau write folsita 
+	   la initializare sau functii precuk fseek
+
+cursor_offset, cursor_whence = offset-ul si pozitia specificata la care trebuie
+							   sa se mute cursorul in urma unui fseek
+
+file_permissions = permisiunile default ale fisierului deschis
+
+file_flags = flagurile folosite la deschiderea unui fisier
+
+
+* Functia so_fopen *
+
+Dupa ce imi aloc si initializez structura SO_FILE, verific in ce mod trebuie
+sa deschid fisierul si ce flag-uri trebuie sa folosesc. De asemenea, ma asigur
+ca modul in care se incearca sa se deschida fisierul este unul valid si nu se
+de open cu un parametru gresit.
+
+* Functia so_fclose *
+
+Dau fflush la buffer, inchid fisierul si la final eliberez memoria alocata pentru
+structura.
+
+* Functia so_fgetc *
+
+Citesc un caracter din fisier. Inainte de citirea efectiva, verific daca buffer-ul
+este plin, caz in care dau fflush la el si fac si verificarile in care fflush da
+fail si citesc in buffer continutul de la file descriptorul asociat.
+
+Dupa ce buffer-ul are continutul indicat de file descriptorul asociat returnez
+un caracter din el si incrementez index-ul din buffer pentru un eventual fgetc
+nou in viitor. De asemenea, ma asigur sa setez modul de acces al fisierului
+ca fiind unul de read.
+
+* Functia so_fputc *
+
+Inainte de scrierea efectiva, verific daca inainte stream-ul meu a fost accesat
+de o functie care a scris date sau de o functie de genul lui fseek care muta
+cursorul, caz in care aleg sa mut index-ul buffer-ului la prima sa pozitie.
+
+Dupa acest pas, scriu in buffer caracterul dat ca parametru si verific daca devine
+plin, caz in care ii dau fflush.
+
+
+* Functia so_fread *
+
+Pentru inceput, verfic daca inainte stream-ul meu a fost accesat
+de o functie care a scris date sau una default, caz in care dau fflush la buffer.
+
+Dupa care ma folosesc de functia so_fgetc pe care am implementat-o anterior pentru
+a citi un caracter de atatea ori cate nmemb elemente am si in functie de ce
+size are fiecare element in parte. Stochez acel caracter la adresa pointer-ului
+dat ca parametru functiei.
+
+* Functia so_fwrite *
+
+Folosesc functia so_fputc pe care am implementat-o anterior pentru a scrie
+cate un caracter din pointer in stream. Voi scrie caractere cu fputc in functie
+de cate nmmemb elemente am si de ce size are fiecare element in parte.
+
+* Functia so_fseek *
+
+Pentru inceput verific daca inainte fisierul meu a fost accesat de o functie
+care citeste date, caz in care resetez size-ul si index-ul buffer-ului la zero.
+
+Mai departe setez in structura mea parametrii pentru where si whence si apelez
+functia set_file_cursor ce foloseste lseek pentru a muta cursorul in fisier.
+
+* Functiile so_ftell, so_fileno, so_feof, so_ferror *
+
+Returneaza parametrul asociat din structura pentru fiecare operatie in parte.
+	- cursor pentru so_ftell
+	- fd pentru so_fileno
+	- eof pentru so_feof
+	- err pentru so_ferror
+
+* Functia so_fflush *
+
+Pentru inceput verific daca ultima operatie a fost de scriere. Daca da, scriu
+in fisierul asociat file descriptorului datele din buffer, dupa care golesc
+buffer-ul.
+
+* Functia so_popen *
+
+Pentru inceput, aloc o structura SO_FILE analog ca la fopen pentru a o folosi mai
+departe. Dupa care, imi initializez un pipe si imi creez un proces nou folosind
+fork. Pentru implementarea cazurilor in functie de valoarea de retur a functiei
+fork am ales sa folosesc o implementare similara cu cea din Laboratorul 3 ce 
+implica un switch pe cazurile de baza (eroare, proces copil, proces parinte).
+
+Daca ma aflu in procesul copil, verific parametrul type. Daca fisierul intors
+este read only, folosesc dup2 pentru a duplica pipe[1] la iesirea standard. Daca
+fisierul intors este write only, folosesc dup2 pentru a duplica pipe[0] la intrarea
+standard. Dupa aceea execut comanda specificata de parametrul functiei, folosind
+execlp. La final inchid file descriptorul din pipe in functie de tipul fisierului
+(daca a fost read sau write only).
+
+Daca ma aflu in procesul parinte, voi prelua din pipe file descriptorul potrivit
+in functie de fisier, daca este read only sau write only.
+
+* Functia so_pclose *
+
+Dau fflush la buffer-ul intern, dupa care astept terminare procesului copil
+folosind functia waitpid. La final, eliberez memoria ocupata de structura.
