@@ -1,0 +1,1 @@
+cmd_/home/student/Desktop/so/labs/lab02/skel/lin/nasty/nasty.mod := { echo  /home/student/Desktop/so/labs/lab02/skel/lin/nasty/nasty.o;  echo; } > /home/student/Desktop/so/labs/lab02/skel/lin/nasty/nasty.mod

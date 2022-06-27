@@ -1,0 +1,1 @@
+cmd_/home/student/Desktop/so/labs/lab02/skel/lin/nasty/built-in.a := rm -f /home/student/Desktop/so/labs/lab02/skel/lin/nasty/built-in.a; ar cDPrST /home/student/Desktop/so/labs/lab02/skel/lin/nasty/built-in.a 

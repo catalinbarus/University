@@ -1,0 +1,4 @@
+execve("./my_system", ["./my_system", "ls"], 0x7ffcdf93fcb0 /* 58 vars */) = 0
+clone(child_stack=0x7fb34c67fff0, flags=CLONE_VM|CLONE_VFORK|SIGCHLD) = 3057
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=3057, si_uid=1001, si_status=0, si_utime=0, si_stime=0} ---
++++ exited with 0 +++
